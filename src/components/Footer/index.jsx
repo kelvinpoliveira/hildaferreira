@@ -1,33 +1,28 @@
 // @ts-nocheck
-import React from "react";
-import { GraduationCap, Facebook, Instagram, Youtube, Mail } from "lucide-react";
+import { Facebook, Instagram, Mail, Youtube } from "lucide-react";
+import logo from '../../assets/images/logo.webp';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Facebook, href: "#", color: "hover:text-blue-600" },
-    { icon: Instagram, href: "#", color: "hover:text-pink-500" },
-    { icon: Youtube, href: "#", color: "hover:text-red-500" },
+    { icon: Facebook, href: "https://www.facebook.com/InstitutoHildaFerreira/", color: "hover:text-blue-600" },
+    { icon: Instagram, href: "https://www.instagram.com/institutohildaferreira/", color: "hover:text-pink-500" },
+    { icon: Youtube, href: "https://www.youtube.com/c/videosihf", color: "hover:text-red-500" },
     { icon: Mail, href: "mailto:contato@escolahildaferreira.com.br", color: "hover:text-[#145CAB]" }
-  ];
-
-  const quickLinks = [
-    "Sobre Nós",
-    "Programas",
-    "Admissões",
-    "Contato",
-    "Blog"
   ];
 
   return (
     <footer className="bg-gray-900 text-white py-16">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid lg:grid-cols-3 gap-8 mb-12 items-center justify-center">
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-r from-[#145CAB] to-[#1e6bc4] rounded-xl flex items-center justify-center">
-                <GraduationCap className="w-7 h-7 text-white" />
+              <div className="w-12 h-12 flex items-center justify-center">
+              <img 
+              src={logo}
+              alt="logo"
+              />
               </div>
               <div>
                 <h3 className="font-bold text-xl">Escola Hilda Ferreira</h3>
@@ -50,7 +45,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div>
+          {/* <div>
             <h4 className="font-bold text-lg mb-6 text-[#F4EC09]">Links Rápidos</h4>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
@@ -64,15 +59,16 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           <div>
             <h4 className="font-bold text-lg mb-6 text-[#FBB03B]">Contato</h4>
             <div className="space-y-3 text-gray-300">
-              <p>Rua das Flores, 123 - Centro</p>
-              <p>São Paulo, SP - 01234-567</p>
-              <p>(11) 3456-7890</p>
-              <p>contato@escolahildaferreira.com.br</p>
+              <p>Rua Carabuçu, Nº 67 - Novo Aleixo (Antigo Núcleo 15)</p>
+              <p>Cidade Nova 3, MA - 1234-567</p>
+              <p>(92) 98827-4517</p>
+              <p>(92) 3646-5096</p>
+              <p>faleconosco@hildaferreira.com.br</p>
             </div>
           </div>
 
@@ -81,11 +77,11 @@ export default function Footer() {
             <div className="space-y-3 text-gray-300">
               <div>
                 <p className="font-medium">Segunda à Sexta</p>
-                <p>7h às 18h</p>
+                <p>7h às 17h</p>
               </div>
               <div>
                 <p className="font-medium">Sábado</p>
-                <p>8h às 12h</p>
+                <p>8h às 11:30h</p>
               </div>
               <div>
                 <p className="font-medium">Domingo</p>
@@ -100,14 +96,6 @@ export default function Footer() {
             <p className="text-gray-400">
               © {currentYear} Escola Hilda Ferreira. Todos os direitos reservados.
             </p>
-            <div className="flex gap-6 text-sm">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                Política de Privacidade
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                Termos de Uso
-              </a>
-            </div>
           </div>
         </div>
       </div>

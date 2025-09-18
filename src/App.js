@@ -22,10 +22,13 @@ function AppRoutes() {
 }
 
 function App() {
+  // Define basename based on environment
+  const basename = process.env.NODE_ENV === 'production' ? '/hildaferreira' : '';
+  
   return (
     <StoreProvider>
       <AnalyticsContext.Provider value={{ trackPageView }}>
-        <Router>
+        <Router basename={basename}>
           <AppRoutes />
         </Router>
       </AnalyticsContext.Provider>

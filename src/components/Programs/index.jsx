@@ -1,7 +1,8 @@
+// @ts-nocheck
 import React, { useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 // import { Badge } from "@/components/ui/badge";
-import { BookOpen, Palette, Calculator, Globe, Microscope, Music } from "lucide-react";
+import { BookOpen, Palette, Calculator, Globe, Microscope, Music, BookOpenCheck } from "lucide-react";
 
 export default function Programs() {
   const sectionRef = useRef(null);
@@ -29,25 +30,33 @@ export default function Programs() {
       icon: BookOpen,
       title: "Educação Infantil",
       age: "3 a 5 anos",
-      description: "Desenvolvimento integral através de brincadeiras, jogos e atividades lúdicas que estimulam a criatividade e o aprendizado.",
+      description: "Cada experiência vivida pelas crianças desperta novas habilidades, tornando o processo educacional envolvente, criativo e transformador.",
       features: ["Alfabetização lúdica", "Desenvolvimento motor", "Socialização", "Arte e música"],
-      color: "from-[#F4EC09] to-[#FBB03B]"
+      color: "from-[#145CAB] to-[#FBB03B]"
     },
     {
       icon: Calculator,
-      title: "Ensino Fundamental I",
+      title: "Ensino Fundamental Anos Iniciais",
       age: "6 a 10 anos",
-      description: "Base sólida em português, matemática e ciências, com metodologias ativas que tornam o aprendizado mais significativo.",
-      features: ["Alfabetização completa", "Raciocínio lógico", "Projetos interdisciplinares", "Inglês desde o 1º ano"],
-      color: "from-[#145CAB] to-[#1e6bc4]"
+      description: "É o momento em que consolidam a alfabetização, ganham independência nos estudos e começam a desenvolver autonomia acadêmica e social.",
+      features: ["Inclusão na prática", "Raciocínio lógico", "Educação cristã", "Esportes"],
+      color: "from-[#FBB03B] to-[#f4ec09]"
     },
     {
       icon: Microscope,
-      title: "Ensino Fundamental II",
+      title: "Ensino Fundamental Anos Finais",
       age: "11 a 14 anos",
       description: "Aprofundamento das disciplinas com foco no desenvolvimento do pensamento crítico e na preparação para o ensino médio.",
-      features: ["Laboratório de ciências", "Robótica educacional", "Projeto de vida", "Simulados preparatórios"],
-      color: "from-[#FBB03B] to-[#ED1C24]"
+      features: ["Olimpíadas Científicas", "Laboratório de ciências", "OlimpHildas", "Simulados preparatórios"],
+      color: "from-[#f4ec09] to-[#ED1C24]"
+    },
+    {
+      icon: BookOpenCheck,
+      title: "Ensino Médio",
+      age: "14 a 16 anos",
+      description: "Com uma proposta pedagógica inovadora, aliamos conteúdo de qualidade, práticas dinâmicas e foco em resultados para o ENEM e vestibulares.",
+      features: ["Simulados para ENEM", "Laboratório de Redação", "OlimpHildas", "Organização inteligente"],
+      color: "from-[#ED1C24] to-[#145CAB]"
     }
   ];
 
@@ -55,16 +64,16 @@ export default function Programs() {
     { icon: Palette, name: "Artes Visuais", color: "bg-[#F4EC09]" },
     { icon: Music, name: "Música", color: "bg-[#FBB03B]" },
     { icon: Globe, name: "Inglês Avançado", color: "bg-[#145CAB]" },
-    { icon: Calculator, name: "Robótica", color: "bg-[#ED1C24]" }
+    { icon: Calculator, name: "Simulados", color: "bg-[#ED1C24]" }
   ];
 
   return (
     <section id="programs" ref={sectionRef} className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+      <div className="container pt-8 mx-auto px-4">
         <div className="text-center mb-16 scroll-fade">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             Nossos{" "}
-            <span className="bg-gradient-to-r from-[#145CAB] to-[#ED1C24] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#145CAB] to-[#F4EC09] bg-clip-text text-transparent">
               Programas Educacionais
             </span>
           </h2>
@@ -73,7 +82,7 @@ export default function Programs() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid lg:grid-cols-4 gap-8 mb-16">
           {programs.map((program, index) => (
             <Card
               key={index}

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "../../components/ui/button";
 import { BookOpen, Users, Award, ArrowRight } from "lucide-react";
+import criancasSalaImg from "../../assets/images/criancas_sala.JPG";
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
@@ -18,10 +19,10 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="hero-gradient min-h-screen flex items-center relative overflow-hidden">
+    <section id="home" className="hero-gradient justify-center min-h-screen flex items-center relative overflow-hidden">
     {/* Background decoration */}
     <div className="absolute inset-0 bg-[#145CAB]">
-      <div className="absolute right-10 w-64 h-64 bg-[#F4EC09] opacity-10 rounded-full blur-3xl float-animation"></div>
+      <div className="absolute top-20 right-10 w-64 h-64 bg-[#F4EC09] opacity-10 rounded-full blur-3xl float-animation"></div>
       <div className="absolute bottom-20 left-10 w-48 h-48 bg-[#FBB03B] opacity-10 rounded-full blur-2xl" style={{ animationDelay: "2s" }}></div>
     </div>
 
@@ -35,7 +36,7 @@ export default function Hero() {
             </div>
             
             <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
-              Escola{" "}
+              Instituto{" "}
               <span className="bg-gradient-to-r from-[#F4EC09] to-[#FBB03B] bg-clip-text text-transparent">
                 Hilda Ferreira
               </span>
@@ -95,7 +96,7 @@ export default function Hero() {
           <div className="relative z-10">
             {/* TODO: CARROSSEL AQUI */}
             <img
-              src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop&crop=center"
+              src={criancasSalaImg}
               alt="Estudantes em sala de aula"
               className="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
             />

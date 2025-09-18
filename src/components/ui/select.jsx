@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useRef, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { ChevronDown, Check } from 'lucide-react';
 
 const SelectContext = createContext();
@@ -6,6 +7,7 @@ const SelectContext = createContext();
 export function Select({ children, value, onValueChange, defaultValue }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(value || defaultValue || '');
+  const [items, setItems] = useState({});
   const triggerRef = useRef(null);
 
   useEffect(() => {
@@ -14,10 +16,17 @@ export function Select({ children, value, onValueChange, defaultValue }) {
     }
   }, [value]);
 
-  const handleValueChange = (newValue) => {
+  const handleValueChange = (newValue, label) => {
     setSelectedValue(newValue);
+    if (label) {
+      setItems(prev => ({ ...prev, [newValue]: label }));
+    }
     onValueChange?.(newValue);
     setIsOpen(false);
+  };
+
+  const registerItem = (value, label) => {
+    setItems(prev => ({ ...prev, [value]: label }));
   };
 
   return (
@@ -26,7 +35,9 @@ export function Select({ children, value, onValueChange, defaultValue }) {
       setIsOpen,
       selectedValue,
       handleValueChange,
-      triggerRef
+      triggerRef,
+      items,
+      registerItem
     }}>
       <div className="relative">
         {children}
@@ -65,19 +76,8 @@ export function SelectTrigger({ children, className = '' }) {
 }
 
 export function SelectValue({ placeholder = 'Selecione uma opção' }) {
-  const { selectedValue } = useContext(SelectContext);
-  const [displayValue, setDisplayValue] = useState('');
-
-  useEffect(() => {
-    const updateDisplayValue = () => {
-      const selectedItem = document.querySelector(`[data-value="${selectedValue}"]`);
-      if (selectedItem) {
-        setDisplayValue(selectedItem.textContent);
-      }
-    };
-    
-    setTimeout(updateDisplayValue, 0);
-  }, [selectedValue]);
+  const { selectedValue, items } = useContext(SelectContext);
+  const displayValue = items[selectedValue] || '';
 
   return (
     <span className={`block truncate ${!displayValue ? 'text-gray-400' : 'text-gray-900'}`}>
@@ -89,13 +89,14 @@ export function SelectValue({ placeholder = 'Selecione uma opção' }) {
 export function SelectContent({ children, className = '' }) {
   const { isOpen, setIsOpen, triggerRef } = useContext(SelectContext);
   const contentRef = useRef(null);
-  const [position, setPosition] = useState({ top: 0, width: 0 });
+  const [position, setPosition] = useState({ top: 0, left: 0, width: 0 });
 
   useEffect(() => {
     if (isOpen && triggerRef.current) {
       const rect = triggerRef.current.getBoundingClientRect();
       setPosition({
-        top: rect.bottom + window.scrollY + 4,
+        top: rect.bottom + 4,
+        left: rect.left,
         width: rect.width
       });
     }
@@ -132,17 +133,17 @@ export function SelectContent({ children, className = '' }) {
 
   if (!isOpen) return null;
 
-  return (
+  return ReactDOM.createPortal(
     <div
       ref={contentRef}
       className={`
-        absolute z-50 mt-1 max-h-60 overflow-auto rounded-lg border border-gray-200
+        fixed z-50 max-h-60 overflow-auto rounded-lg border border-gray-200
         bg-white shadow-lg animate-in fade-in-0 zoom-in-95
         ${className}
       `}
       style={{
         top: `${position.top}px`,
-        left: triggerRef.current?.offsetLeft || 0,
+        left: `${position.left}px`,
         width: `${position.width}px`
       }}
       role="listbox"
@@ -150,18 +151,24 @@ export function SelectContent({ children, className = '' }) {
       <div className="py-1">
         {children}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
 export function SelectItem({ children, value, className = '' }) {
-  const { selectedValue, handleValueChange } = useContext(SelectContext);
+  const { selectedValue, handleValueChange, registerItem } = useContext(SelectContext);
   const isSelected = selectedValue === value;
+  
+  // Register this item when it mounts
+  useEffect(() => {
+    registerItem(value, children);
+  }, [value, children, registerItem]);
 
   return (
     <div
       data-value={value}
-      onClick={() => handleValueChange(value)}
+      onClick={() => handleValueChange(value, children)}
       className={`
         relative flex cursor-pointer select-none items-center justify-between
         px-4 py-2.5 text-base outline-none

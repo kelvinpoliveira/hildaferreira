@@ -19,24 +19,11 @@ export const trackPageView = (path) => {
 };
 
 export const trackEvent = (action, category, label, value) => {
-    if (typeof window !== 'undefined' && window.gtag) {
-        const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        
-        if (!isDevelopment) {
-            window.gtag('event', action, {
-                event_category: category,
-                event_label: label,
-                value: value,
-            });
-        } else {
-            console.log('🔍 Google Analytics (DEV):', { 
-                event: action, 
-                category, 
-                label, 
-                value 
-            });
-        }
-    }
+    window.gtag('event', action, {
+        event_category: category,
+        event_label: label,
+        value: value,
+    });
 };
 
 export const AnalyticsContext = createContext({

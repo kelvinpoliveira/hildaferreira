@@ -1,28 +1,31 @@
 // @ts-nocheck
-import React, { useState, useEffect, useRef } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
+import { CheckCircle, Clock, Mail, MapPin, Phone, Send, MessageCircleMore } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "../../components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/select";
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 // import { Contact } from "@/entities/Contact";
+import emailjs from '@emailjs/browser';
 import Input from "components/Input/index";
 import Textarea from "components/Textarea/index";
+import ReactGA from 'react-ga4';
+import { ToastContainer, toast } from 'react-toastify';
+import { useContext } from 'react';
+import {AnalyticsContext} from 'services/ga/AnalyticsContext'
+import { trackEvent } from '../../services/ga/AnalyticsContext';
 
 export default function ContactSection() {
   const sectionRef = useRef(null);
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
+    form_name: "",
+    form_email: "",
+    form_phone: "",
     message: "",
-    inquiry_type: "general"
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  useEffect(() => {
-    console.log("teste disparo")
-  }, []);
+  const form = useRef();
+  const ini = useContext(AnalyticsContext);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -46,16 +49,23 @@ export default function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
+
     try {
-      // await Contact.create(formData);
-      // setIsSuccess(true);
-      // setFormData({
-      //   name: "",
-      //   email: "",
-      //   phone: "",
-      //   message: "",
-      //   inquiry_type: "general"
-      // });
+      trackEvent("working_lead", "/contact_form", 'click_send_contact_form', "Formulário de contato");
+
+      ReactGA.event({category: 'Social Links', action: 'ClickTeste',label: "Formulário de contato",});
+      // emailjs
+      // .sendForm('service_7ointbt', 'template_418fct9', form.current, {
+      //   publicKey: 'tr_-jraGt4mDWXjtn',
+      // })
+      // .then(
+      //   () => {
+      //     toast.success('Formulário enviado!', {
+      //       position: 'top-right',
+      //     });
+      //   },
+      //   (error) => {},
+      // );
       
       setTimeout(() => setIsSuccess(false), 5000);
     } catch (error) {
@@ -65,6 +75,13 @@ export default function ContactSection() {
     setIsSubmitting(false);
   };
 
+  const handleWhatsAppMessage = () => {
+    const phoneNumber = '5581999989897'
+    const message = 'Olá, gostaria de saber algumas informações da escola !'
+
+    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  }
+
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
@@ -73,36 +90,36 @@ export default function ContactSection() {
     {
       icon: MapPin,
       title: "Endereço",
-      content: "Rua das Flores, 123 - Centro\nSão Paulo, SP - 01234-567",
+      content: "Rua Carabuçu, Nº 67 - Novo Aleixo (Antigo Núcleo 15)",
       color: "text-[#145CAB]"
     },
     {
       icon: Phone,
       title: "Telefone",
-      content: "(11) 3456-7890\n(11) 98765-4321",
+      content: "(92) 3646-5096\n(92) 98827-4517",
       color: "text-[#FBB03B]"
     },
     {
       icon: Mail,
       title: "Email",
-      content: "contato@escolahildaferreira.com.br\nmatriculuas@escolahildaferreira.com.br",
+      content: "faleconosco@hildaferreira.com.br",
       color: "text-[#ED1C24]"
     },
     {
       icon: Clock,
       title: "Horário",
-      content: "Segunda à Sexta: 7h às 18h\nSábado: 8h às 12h",
+      content: "Segunda à Sexta: 7h às 17h\nSábado: 8h às 11:30h",
       color: "text-[#145CAB]"
     }
   ];
 
   return (
     <section id="contact" ref={sectionRef} className="py-20 bg-[#FAFAF9]">
-      <div className="container mx-auto px-4">
+      <div className="container pt-8 mx-auto px-4">
         <div className="text-center mb-16 scroll-fade">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             Entre em{" "}
-            <span className="bg-gradient-to-r from-[#145CAB] to-[#ED1C24] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#145CAB] to-[#F4EC09] bg-clip-text text-transparent">
               Contato
             </span>
           </h2>
@@ -128,14 +145,15 @@ export default function ContactSection() {
                     <p className="text-gray-600">Entraremos em contato em breve. Obrigado!</p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form ref={form} onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <label className="text-sm font-medium text-gray-700">Nome Completo</label>
                         <Input
+                          name="form_name"
                           required
                           value={formData.name}
-                          onChange={(e) => handleInputChange("name", e.target.value)}
+                          onChange={(e) => handleInputChange("form_name", e.target.value)}
                           placeholder="Seu nome"
                           className="border-gray-200 focus:border-[#145CAB]"
                         />
@@ -144,6 +162,7 @@ export default function ContactSection() {
                         <label className="text-sm font-medium text-gray-700">Email</label>
                         <Input
                           required
+                          name="form_email"
                           type="email"
                           value={formData.email}
                           onChange={(e) => handleInputChange("email", e.target.value)}
@@ -153,36 +172,26 @@ export default function ContactSection() {
                       </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-4">
+                    <div className="grid md:grid-cols-1 gap-4">
                       <div className="space-y-2">
                         <label className="text-sm font-medium text-gray-700">Telefone</label>
                         <Input
+                          required
+                          name="form_phone"
                           value={formData.phone}
                           onChange={(e) => handleInputChange("phone", e.target.value)}
                           placeholder="(11) 99999-9999"
                           className="border-gray-200 focus:border-[#145CAB]"
                         />
                       </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">Assunto</label>
-                        <Select value={formData.inquiry_type} onValueChange={(value) => handleInputChange("inquiry_type", value)}>
-                          <SelectTrigger className="border-gray-200 focus:border-[#145CAB]">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="admission">Matrícula</SelectItem>
-                            <SelectItem value="academic">Informações Acadêmicas</SelectItem>
-                            <SelectItem value="extracurricular">Atividades Extracurriculares</SelectItem>
-                            <SelectItem value="general">Informações Gerais</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
+
                     </div>
 
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-gray-700">Mensagem</label>
                       <Textarea
                         required
+                        name="form_message"
                         value={formData.message}
                         onChange={(e) => handleInputChange("message", e.target.value)}
                         placeholder="Como podemos ajudá-lo?"
@@ -206,6 +215,36 @@ export default function ContactSection() {
           </div>
 
           <div className="space-y-6 scroll-fade">
+                          {/* WhatsApp Button */}
+                          <Card className="border-none shadow-xl bg-gradient-to-r from-green-500 to-green-600 text-white overflow-hidden">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center">
+                      <MessageCircleMore className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-white mb-1">WhatsApp</h4>
+                      <p className="text-white/90 text-sm">Fale conosco agora mesmo</p>
+                    </div>
+                  </div>
+                  {/* <Button
+                    onClick={handleWhatsAppClick}
+                    className="bg-white hover:bg-gray-100 text-green-600 font-semibold px-6"
+                  >
+                    Conversar
+                  </Button> */}
+                  <a
+                    href={handleWhatsAppMessage()}
+                    target="_blank"
+                    crel="noopener noreferrer" rel="noreferrer"
+                    className="inline-flex items-center justify-center px-6 py-2 bg-white text-green-600 font-semibold rounded-xl hover:bg-green-50 transition-colors duration-200"
+                  >
+                    Conversar
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
             <div className="grid gap-6">
               {contactInfo.map((info, index) => (
                 <Card
@@ -226,21 +265,10 @@ export default function ContactSection() {
                 </Card>
               ))}
             </div>
-
-            <Card className="border-none shadow-xl overflow-hidden">
-              <div className="h-48 bg-gradient-to-r from-[#145CAB] to-[#1e6bc4] relative">
-                <div className="absolute inset-0 bg-black/20"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <h4 className="text-2xl font-bold mb-2">Venha nos visitar!</h4>
-                    <p className="text-white/90">Agende uma visita e conheça nossa estrutura</p>
-                  </div>
-                </div>
-              </div>
-            </Card>
           </div>
         </div>
       </div>
+    <ToastContainer />
     </section>
   );
 }

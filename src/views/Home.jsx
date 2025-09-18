@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import {Navbar} from '../components/Navbar';
+import {Navbar} from '../components/Navbar/index';
 import Hero from 'components/Hero/index';
 import About from 'components/About/index';
 import Programs from 'components/Programs/index';
@@ -8,23 +8,21 @@ import ContactForm from 'components/ContactForm/index';
 import Footer from 'components/Footer/index';
 import { useContext } from 'react';
 import {AnalyticsContext} from 'services/ga/AnalyticsContext'
+import ReactGA from 'react-ga4';
 
-const Home = (() => {
+const Home = () => {
+  const TRACKING_ID = "G-BR85R90X35";
 
-  const [isVisible, setIsVisible] = useState(false);
-  const ini = useContext(AnalyticsContext);
+  // const ini = useContext(AnalyticsContext);
 
   useEffect(() => {
-    setIsVisible(true);
+    console.log("iniciou 1")
+    ReactGA.initialize(TRACKING_ID);
+    // Send pageview with a custom path
+    ReactGA.send({ hitType: "pageview", page: "/Home", title: "Homeeee" });
+    console.log("iniciou 3")
   }, []);
 
-  const scrollToSection = (href) => {
-    console.log("🚀 ~ scrollToSection ~ href:", href)
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <div>
@@ -36,6 +34,6 @@ const Home = (() => {
       <Footer />
     </div>
   );
-});
+};
 
 export default Home;

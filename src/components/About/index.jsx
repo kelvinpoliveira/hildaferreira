@@ -1,7 +1,7 @@
 // @ts-nocheck
-import React, { useEffect, useRef } from "react";
-import { Card, CardContent } from "../../components/ui/card";
-import { Heart, Globe, Lightbulb, Target } from "lucide-react";
+import { Globe, Heart, Lightbulb, Target } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { Card } from "../../components/ui/card";
 
 export default function About() {
   const sectionRef = useRef(null);
@@ -27,7 +27,7 @@ export default function About() {
   const values = [
     {
       icon: Heart,
-      title: "Educação Humanizada",
+      title: "Educação Cristã",
       description: "Valorizamos o desenvolvimento integral de cada aluno, respeitando suas individualidades e potencialidades."
     },
     {
@@ -49,17 +49,16 @@ export default function About() {
 
   return (
     <section id="about" ref={sectionRef} className="py-20 bg-[#FAFAF9]">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto pt-8 px-4">
         <div className="text-center mb-16 scroll-fade">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             Sobre a{" "}
-            <span className="bg-gradient-to-r from-[#145CAB] to-[#1e6bc4] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#145CAB] to-[#F4EC09] bg-clip-text text-transparent">
               Escola Hilda Ferreira
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Há mais de três décadas, nossa escola tem sido referência em educação de qualidade, 
-            formando gerações de estudantes preparados para os desafios do século XXI.
+            Muito mais que uma escola, uma grande família!
           </p>
         </div>
 
@@ -75,14 +74,19 @@ export default function About() {
           <div className="space-y-6 scroll-fade">
             <h3 className="text-3xl font-bold text-gray-900">Nossa História</h3>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Fundada em 1990 por Hilda Ferreira, nossa escola nasceu com a missão de proporcionar 
-              uma educação transformadora que vai além dos conteúdos acadêmicos. Acreditamos que 
-              cada criança é única e possui um potencial imenso a ser desenvolvido.
+            Fundado em 17 de fevereiro de 1992, o IHF destina-se a atender alunos de Creche (a partir de 2 anos completos até 31/03), Educação Infantil (3 a 5 anos), Ensino Fundamental (1º ao 9º ano) e do Ensino Médio (1ª a 3ª séries).
             </p>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Ao longo dos anos, construímos uma comunidade educativa sólida, baseada nos pilares 
-              da excelência acadêmica, formação humana e inovação pedagógica. Nosso compromisso é 
-              formar cidadãos críticos, criativos e preparados para liderar as transformações do futuro.
+            A partir dos 2 anos, seu filho já pode fazer parte da Família Hilda Ferreira,
+uma escola particular em Manaus que oferece educação infantil de
+qualidade.
+            </p>
+            <p className="text-lg text-gray-600 leading-relaxed">
+            <p className="text-lg text-gray-600 leading-relaxed">
+            Cada experiência vivida pelas crianças desperta novas
+habilidades, tornando o processo educacional envolvente, criativo e
+transformador.
+            </p>
             </p>
           </div>
         </div>
