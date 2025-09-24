@@ -1,0 +1,166 @@
+import React from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import Footer from "../components/Footer/index";
+import { 
+  ArrowLeft, Milestone, Clock, Target, Users2, Lightbulb, Route, Sparkles,
+  ClipboardCheck, Trophy, CalendarDays, Bot, Map, Scroll, Feather, PenTool, Star
+} from "lucide-react";
+
+const FeatureCard = ({ icon: Icon, title, description, color, children }) => (
+  <div className="flex items-start gap-4">
+    <div className={`w-12 h-12 flex-shrink-0 ${color} rounded-lg flex items-center justify-center`}>
+      <Icon className="w-6 h-6 text-white" />
+    </div>
+    <div>
+      <h4 className="font-bold text-lg text-gray-900">{title}</h4>
+      <p className="text-gray-600 leading-relaxed">{description}</p>
+      {children}
+    </div>
+  </div>
+);
+
+export default function EnsinoMedioPage() {
+  const navigate = useNavigate();
+  const cargasHorarias = [
+    { icon: Clock, title: "1ª e 2ª séries", description: "30h semanais com todos os conteúdos essenciais do Ensino Médio para uma base sólida.", color: "bg-[#145CAB]" },
+    { icon: Target, title: "3ª série (Terceirão)", description: "30h semanais com foco total em vestibulares e ENEM, maximizando a preparação.", color: "bg-[#1e6bc4]" }
+  ];
+
+  const preparacao = [
+    { icon: Clock, title: "1ª e 2ª séries", description: "1ª e 2ª séries: 30h semanais, todos os conteúdos do EM", color: "bg-[#145CAB]" },
+    { icon: Target, title: "3ª série (Terceirão)", description: "30h semanais, Foco em vestibulares e ENEM", color: "bg-[#1e6bc4]" },
+    { icon: Users2, title: "Reforço Escolar", description: "Reforço escolar contraturno em matemática, física, química, biologia e português.", color: "bg-[#145CAB]" },
+    { icon: Lightbulb, title: "Projeto de Vida", description: "Orientação profissional, organização de estudos, diálogos com profissionais.", color: "bg-[#1e6bc4]" },
+    { icon: Route, title: "Itinerários Formativos", description: "Oficinas por área do conhecimento", color: "bg-[#145CAB]" },
+    { icon: Trophy, title: "Olimpíadas Científicas", description: "São competições de conhecimento que visam estimular o aprendizado, além de preparar para o ingresso em universidades.", color: "bg-[#145CAB]" }
+  ];
+
+  const trilhas = [
+    { icon: Bot, name: "Robótica" },
+    { icon: Map, name: "Geografia Regional" },
+    { icon: Scroll, name: "História Regional" },
+    { icon: Feather, name: "Literatura Amazonense" },
+    { icon: PenTool, name: "Redação Nota 1000" }
+  ];
+
+  const eventos = [
+    { icon: Bot, name: "Olimphildas"},
+    { icon: Bot, name: "Saídas Pedagógicas"},
+    { icon: Bot, name: "Projeto Diálogos"},
+    { icon: Bot, name: "Desfile Escolar"},
+    { icon: Bot, name: "Projeto Brilho na Educação"}
+  ];
+
+  const createPageUrl = () => {
+    navigate("/")
+  }
+
+  return (
+    <div className="bg-[#FAFAF9]">
+      <header className="hero-gradient text-white relative overflow-hidden py-20">
+        <div className="container mx-auto px-4 relative z-10">
+          <Link to={createPageUrl("Home")} className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors mb-8">
+            <ArrowLeft className="w-5 h-5" />
+            Voltar para a página inicial
+          </Link>
+          <div className="flex items-center gap-4 mb-4">
+            <Milestone className="w-12 h-12" />
+            <div>
+              <h1 className="text-5xl lg:text-7xl font-bold leading-tight">Ensino Médio</h1>
+              <p className="text-xl text-white/90">Preparação para o futuro e os grandes vestibulares</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main className="py-20">
+        <div className="container mx-auto px-4 space-y-20">
+{/*           
+          <section>
+            <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">Nossa Estrutura de Ensino</h2>
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {cargasHorarias.map(item => <FeatureCard key={item.title} {...item} />)}
+            </div>
+          </section> */}
+
+          <section className="bg-white p-12 rounded-2xl shadow-xl">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Preparação Completa para o Sucesso</h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Ferramentas e programas que garantem um diferencial competitivo para nossos alunos.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {preparacao.map(item => <FeatureCard key={item.title} {...item} />)}
+            </div>
+          </section>
+          
+          <section>
+            <div className="text-center mb-12">
+              <div className="inline-block bg-gradient-to-r from-[#FBB03B] to-[#f8a01d] p-4 rounded-full mb-6">
+                <Sparkles className="w-10 h-10 text-white" />
+              </div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Trilhas de Aprofundamento</h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Caminhos de estudo personalizados para desenvolver habilidades específicas e explorar paixões.
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-4">
+              {trilhas.map(item => (
+                <div key={item.name} className="flex items-center gap-3 bg-white p-4 rounded-lg shadow-lg min-w-[220px] border border-gray-100">
+                  <div className="w-10 h-10 flex-shrink-0 bg-[#FBB03B]/10 text-[#f8a01d] rounded-md flex items-center justify-center">
+                    <item.icon className="w-5 h-5" />
+                  </div>
+                  <span className="text-md font-semibold text-gray-800">{item.name}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section>
+            <div className="text-center mb-12">
+              <div className="inline-block bg-[#ED1C24] p-4 rounded-full mb-6">
+                <CalendarDays className="w-8 h-8 text-white" />  
+              </div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Eventos</h2>
+            </div>
+            <div className="flex flex-wrap justify-center gap-4">
+              {eventos.map(item => (
+                <div key={item.name} className="flex items-center gap-3 bg-white p-4 rounded-lg shadow-lg min-w-[220px] border border-gray-100">
+                  <div className="w-10 h-10 flex-shrink-0 bg-[#FBB03B]/10 text-[#f8a01d] rounded-md flex items-center justify-center">
+                    <item.icon className="w-5 h-5" />
+                  </div>
+                  <span className="text-md font-semibold text-gray-800">{item.name}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* <section>
+            <Card className="border-none shadow-xl bg-gradient-to-r from-[#ED1C24] to-[#c91820] text-white">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-3 text-3xl">
+                  <CalendarDays className="w-8 h-8" />
+                  Eventos que Marcam
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-4">
+                  {eventos.map(evento => (
+                    <div key={evento} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
+                      <Star className="w-4 h-4 text-[#F4EC09]" />
+                      <span className="font-medium">{evento}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </section> */}
+
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+}

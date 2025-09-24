@@ -15,7 +15,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-16">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-3 gap-8 mb-12 items-center justify-center">
+        <div className="grid lg:grid-cols-4 gap-8 mb-12 items-start">
           <div className="space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 flex items-center justify-center">
@@ -64,11 +64,28 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-lg mb-6 text-[#FBB03B]">Contato</h4>
             <div className="space-y-3 text-gray-300">
-              <p>Rua Carabuçu, Nº 67 - Novo Aleixo (Antigo Núcleo 15)</p>
-              <p>Cidade Nova 3, MA - 1234-567</p>
+              <p>Rua Carabuçu, Nº 67 - Novo Aleixo</p>
+              <p>Manaus - AM, 69098-080</p>
+              <p>(92) 3223-6934</p>
               <p>(92) 98827-4517</p>
-              <p>(92) 3646-5096</p>
               <p>faleconosco@hildaferreira.com.br</p>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-lg mb-6 text-[#145CAB]">Localização</h4>
+            <div className="w-full h-64 rounded-lg overflow-hidden shadow-lg">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.0834063361707!2d-59.99544562377589!3d-3.069300896767599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x926c1a7bd5555555%3A0x7516b7c6e7a3d8f9!2sRua%20Carabu%C3%A7u%2C%2067%20-%20Novo%20Aleixo%2C%20Manaus%20-%20AM%2C%2069098-080!5e0!3m2!1spt-BR!2sbr!4v1234567890123"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Instituto Hilda Ferreira - Rua Carabuçu, 67 - Novo Aleixo"
+                className="grayscale hover:grayscale-0 transition-all duration-300"
+              />
             </div>
           </div>
 
@@ -81,7 +98,7 @@ export default function Footer() {
               </div>
               <div>
                 <p className="font-medium">Sábado</p>
-                <p>8h às 11:30h</p>
+                <p>Fechado</p>
               </div>
               <div>
                 <p className="font-medium">Domingo</p>

@@ -23,6 +23,8 @@ export default function ContactSection() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
 
   const form = useRef();
   const ini = useContext(AnalyticsContext);
@@ -47,6 +49,13 @@ export default function ContactSection() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate before submitting
+    if (emailError || phoneError) {
+      alert("Por favor, corrija os erros no formulário");
+      return;
+    }
+    
     setIsSubmitting(true);
 
 
@@ -83,20 +92,64 @@ export default function ContactSection() {
   }
 
   const handleInputChange = (field, value) => {
+    // Apply phone mask
+    if (field === "form_phone") {
+      value = formatPhone(value);
+      validatePhone(value);
+    }
+    
+    // Validate email
+    if (field === "form_email") {
+      validateEmail(value);
+    }
+    
     setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const formatPhone = (value) => {
+    // Remove non-digits
+    const digits = value.replace(/\D/g, '');
+    
+    // Apply mask (XX) XXXXX-XXXX
+    if (digits.length <= 2) {
+      return digits;
+    } else if (digits.length <= 7) {
+      return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+    } else if (digits.length <= 11) {
+      return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7, 11)}`;
+    }
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7, 11)}`;
+  };
+
+  const validatePhone = (phone) => {
+    const digits = phone.replace(/\D/g, '');
+    if (digits.length > 0 && digits.length < 10) {
+      setPhoneError("Telefone inválido. Use o formato (XX) XXXXX-XXXX");
+    } else {
+      setPhoneError("");
+    }
+  };
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (email && !emailRegex.test(email)) {
+      setEmailError("E-mail inválido");
+    } else {
+      setEmailError("");
+    }
   };
 
   const contactInfo = [
     {
       icon: MapPin,
       title: "Endereço",
-      content: "Rua Carabuçu, Nº 67 - Novo Aleixo (Antigo Núcleo 15)",
+      content: "Rua Carabuçu, Nº 67 - Novo Aleixo MANAUS/AMAZONAS",
       color: "text-[#145CAB]"
     },
     {
       icon: Phone,
       title: "Telefone",
-      content: "(92) 3646-5096\n(92) 98827-4517",
+      content: "(92) 3646-5096\n(92) 3223-6934\n(92) 98643-3313",
       color: "text-[#FBB03B]"
     },
     {
@@ -108,7 +161,7 @@ export default function ContactSection() {
     {
       icon: Clock,
       title: "Horário",
-      content: "Segunda à Sexta: 7h às 17h\nSábado: 8h às 11:30h",
+      content: "Segunda à Sexta: 7h às 17h\nSábado e Domingo: Fechado",
       color: "text-[#145CAB]"
     }
   ];
@@ -119,7 +172,7 @@ export default function ContactSection() {
         <div className="text-center mb-16 scroll-fade">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             Entre em{" "}
-            <span className="bg-gradient-to-r from-[#145CAB] to-[#F4EC09] bg-clip-text text-transparent">
+            <span className="bg-[#145CAB] bg-clip-text text-transparent">
               Contato
             </span>
           </h2>
@@ -148,47 +201,50 @@ export default function ContactSection() {
                   <form ref={form} onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">Nome Completo</label>
+                        <label className="text-sm font-medium text-gray-700">Nome Completo *</label>
                         <Input
                           name="form_name"
                           required
-                          value={formData.name}
+                          value={formData.form_name}
                           onChange={(e) => handleInputChange("form_name", e.target.value)}
                           placeholder="Seu nome"
                           className="border-gray-200 focus:border-[#145CAB]"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">Email</label>
+                        <label className="text-sm font-medium text-gray-700">Email *</label>
                         <Input
                           required
                           name="form_email"
                           type="email"
-                          value={formData.email}
-                          onChange={(e) => handleInputChange("email", e.target.value)}
+                          value={formData.form_email}
+                          onChange={(e) => handleInputChange("form_email", e.target.value)}
                           placeholder="seu@email.com"
-                          className="border-gray-200 focus:border-[#145CAB]"
+                          className={`border-gray-200 focus:border-[#145CAB] ${emailError ? 'border-red-500' : ''}`}
                         />
+                        {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
                       </div>
                     </div>
 
                     <div className="grid md:grid-cols-1 gap-4">
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">Telefone</label>
+                        <label className="text-sm font-medium text-gray-700">Telefone *</label>
                         <Input
                           required
                           name="form_phone"
-                          value={formData.phone}
-                          onChange={(e) => handleInputChange("phone", e.target.value)}
+                          value={formData.form_phone}
+                          onChange={(e) => handleInputChange("form_phone", e.target.value)}
                           placeholder="(11) 99999-9999"
-                          className="border-gray-200 focus:border-[#145CAB]"
+                          maxLength="15"
+                          className={`border-gray-200 focus:border-[#145CAB] ${phoneError ? 'border-red-500' : ''}`}
                         />
+                        {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
                       </div>
 
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-gray-700">Mensagem</label>
+                      <label className="text-sm font-medium text-gray-700">Mensagem *</label>
                       <Textarea
                         required
                         name="form_message"
@@ -202,8 +258,8 @@ export default function ContactSection() {
 
                     <Button
                       type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-[#145CAB] hover:bg-[#123f7a] text-white py-6 text-lg font-semibold rounded-xl"
+                      disabled={isSubmitting || !!emailError || !!phoneError}
+                      className="w-full bg-[#145CAB] hover:bg-[#123f7a] text-white py-6 text-lg font-semibold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
                       {!isSubmitting && <Send className="w-5 h-5 ml-2" />}

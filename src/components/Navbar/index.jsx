@@ -1,10 +1,10 @@
 // @ts-nocheck
-import { Menu, X } from "lucide-react";
+import { Menu as MenuIcon, X, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/logo.webp';
 import { Button } from '../../components/ui/button';
-
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 
 export function Navbar() {
   const navigate = useNavigate();
@@ -24,6 +24,7 @@ export function Navbar() {
     { name: "Institucional", href: "#about" },
     { name: "Ensino", href: "#programs" },
     { name: "Contato", href: "#contact" },
+    { name: "Área Exclusiva", href: "#ouvidoria" },
     { name: "Ouvidoria", href: "#ouvidoria" }
   ];
 
@@ -37,6 +38,10 @@ export function Navbar() {
 
   const createPageUrl = () => {
     navigate("/")
+  }
+
+  const callPageUrl = (page) => {
+    navigate(`/${page}`)
   }
 
   return (
@@ -62,10 +67,10 @@ export function Navbar() {
                 </div>
                 <div>
                   <h1 className={`font-bold text-xl ${isScrolled ? "text-gray-900" : "text-white"}`}>
-                    Escola Hilda Ferreira
+                    Instituto Hilda Ferreira
                   </h1>
                   <p className={`text-sm ${isScrolled ? "text-gray-600" : "text-white/80"}`}>
-                    Excelência em Educação
+                    Muito mais do que uma escola, uma grande família
                   </p>
                 </div>
               </div>
@@ -73,10 +78,143 @@ export function Navbar() {
 
           <nav className="hidden lg:flex items-center gap-8">
             {navigation.map((item) => (
-              <button
+              item.name === "Ensino" ? (
+                  <Menu as="div" className="relative">
+                    <MenuButton className={`font-medium transition-colors flex flex-row items-center gap-1 hover:text-[#FBB03B] ${
+                      isScrolled ? "text-gray-700" : "text-white"
+                    }`}>
+                      {item.name}
+                      <ChevronDown aria-hidden="true" className={`size-5 ${
+                      isScrolled ? "text-gray-700" : "text-white"
+                    }`} />
+                    </MenuButton>
+
+                    <MenuItems
+                      transition
+                      className="absolute z-50 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none
+                      data-[closed]:scale-95 data-[closed]:opacity-0
+                      data-[enter]:duration-300 data-[leave]:duration-200
+                      data-[enter]:ease-out data-[leave]:ease-in
+                      transition-all"
+                    >
+                    <div className="py-1">
+                      <MenuItem>
+                        {({ active }) => (
+                          <button onClick={() => callPageUrl("Infantil")} className={`${
+                            active ? 'bg-gray-100' : ''
+                          } block w-full text-left px-4 py-2 text-sm text-gray-700`}>
+                            Educação Infantil
+                          </button>
+                        )}
+                      </MenuItem>
+                      <MenuItem>
+                        {({ active }) => (
+                          <button onClick={() => callPageUrl("AnosIniciais")} className={`${
+                            active ? 'bg-gray-100' : ''
+                          } block w-full text-left px-4 py-2 text-sm text-gray-700`}>
+                            Ensino Fundamental Anos Iniciais
+                          </button>
+                        )}
+                      </MenuItem>
+                      <MenuItem>
+                        {({ active }) => (
+                          <button onClick={() => callPageUrl("AnosFinais")} className={`${
+                            active ? 'bg-gray-100' : ''
+                          } block w-full text-left px-4 py-2 text-sm text-gray-700`}>
+                            Ensino Fundamental Anos Finais
+                          </button>
+                        )}
+                      </MenuItem>
+                      <MenuItem>
+                        {({ active }) => (
+                          <button onClick={() => callPageUrl("EnsinoMedio")} className={`${
+                            active ? 'bg-gray-100' : ''
+                          } block w-full text-left px-4 py-2 text-sm text-gray-700`}>
+                            Ensino Médio
+                          </button>
+                        )}
+                      </MenuItem>
+                    </div>
+                    </MenuItems>
+                  </Menu>
+              ) : (
+                item.name === "Área Exclusiva" ? (
+                  <Menu as="div" className="relative">
+                    <MenuButton className={`font-medium transition-colors flex flex-row items-center gap-1 hover:text-[#FBB03B] ${
+                      isScrolled ? "text-gray-700" : "text-white"
+                    }`}>
+                      {item.name}
+                      <ChevronDown aria-hidden="true" className={`size-5 ${
+                      isScrolled ? "text-gray-700" : "text-white"
+                    }`} />
+                    </MenuButton>
+
+                    <MenuItems
+                      transition
+                      className="absolute z-50 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none
+                      data-[closed]:scale-95 data-[closed]:opacity-0
+                      data-[enter]:duration-300 data-[leave]:duration-200
+                      data-[enter]:ease-out data-[leave]:ease-in
+                      transition-all"
+                    >
+                    <div className="py-1">
+                      <MenuItem>
+                        {({ active }) => (
+                          <a target="_blank" rel="noopener noreferrer" href="https://siga04.activesoft.com.br/login/?instituicao=HILDAFERREIRA" className={`${
+                            active ? 'bg-gray-100' : ''
+                          } block w-full text-left px-4 py-2 text-sm text-gray-700`}>
+                            Área do Aluno
+                          </a>
+                        )}
+                      </MenuItem>
+                      <MenuItem>
+                        {({ active }) => (
+                          <a target="_blank" rel="noopener noreferrer" href="https://siga04.activesoft.com.br/login/?instituicao=HILDAFERREIRA" className={`${
+                            active ? 'bg-gray-100' : ''
+                          } block w-full text-left px-4 py-2 text-sm text-gray-700`}>
+                            Área do Professor
+                          </a>
+                        )}
+                      </MenuItem>
+                      <MenuItem>
+                        {({ active }) => (
+                          <a target="_blank" rel="noopener noreferrer" href="https://pmais.p4ed.com/" className={`${
+                            active ? 'bg-gray-100' : ''
+                          } block w-full text-left px-4 py-2 text-sm text-gray-700`}>
+                            Portal Poliedro
+                          </a>
+                        )}
+                      </MenuItem>
+                      <MenuItem>
+                        {({ active }) => (
+                          <button className={`${
+                            active ? 'bg-gray-100' : ''
+                          } block w-full text-left px-4 py-2 text-sm text-gray-700`}
+                          onClick={() => {
+                            console.log(item)
+                            navigate("/Ouvidoria")
+                          }}>
+                            Ouvidoria
+                          </button>
+                        )}
+                      </MenuItem>
+                      <MenuItem>
+                        {({ active }) => (
+                          <button className={`${
+                            active ? 'bg-gray-100' : ''
+                          } block w-full text-left px-4 py-2 text-sm text-gray-700`}>
+                            Linha Ética
+                          </button>
+                        )}
+                      </MenuItem>
+                    </div>
+                    </MenuItems>
+                  </Menu>
+                ) : (
+
+                <button
                 key={item.name}
                 onClick={() => {
-                  console.log("🚀 ~ item.name:", item.name)
                   item.name === "Ouvidoria" ? navigate("/Ouvidoria") : scrollToSection(item.href)
                 }}
                 className={`font-medium transition-colors hover:text-[#FBB03B] ${
@@ -85,6 +223,8 @@ export function Navbar() {
               >
                 {item.name}
               </button>
+                )
+              )
             ))}
             <Button
               onClick={() => scrollToSection("#contact")}
@@ -102,7 +242,7 @@ export function Navbar() {
             {isMobileMenuOpen ? (
               <X className={`w-6 h-6 ${isScrolled ? "text-gray-900" : "text-white"}`} />
             ) : (
-              <Menu className={`w-6 h-6 ${isScrolled ? "text-gray-900" : "text-white"}`} />
+              <MenuIcon className={`w-6 h-6 ${isScrolled ? "text-gray-900" : "text-white"}`} />
             )}
           </button>
         </div>

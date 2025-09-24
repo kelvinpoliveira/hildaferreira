@@ -8,31 +8,84 @@ import { Send, CheckCircle, ChevronLeft } from "lucide-react";
 import logo from '../assets/images/logo.webp'
 import Footer from 'components/Footer/index';
 import emailjs from '@emailjs/browser';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function SupportPage() {
   const [formData, setFormData] = useState({
     form_name: "",
     form_email: "",
     form_phone: "",
-    message: "",
+    form_message: "",
+    userType: "", // 'professor' or 'aluno'
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const navigate = useNavigate();
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
 
   const form = useRef();
 
   const handleInputChange = (field, value) => {
+    // Apply phone mask
+    if (field === "form_phone") {
+      value = formatPhone(value);
+      validatePhone(value);
+    }
+    
+    // Validate email
+    if (field === "form_email") {
+      validateEmail(value);
+    }
+    
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const createPageUrl = () => {
-    navigate("/")
-  }
+  const formatPhone = (value) => {
+    // Remove non-digits
+    const digits = value.replace(/\D/g, '');
+    
+    // Apply mask (XX) XXXXX-XXXX
+    if (digits.length <= 2) {
+      return digits;
+    } else if (digits.length <= 7) {
+      return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+    } else if (digits.length <= 11) {
+      return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7, 11)}`;
+    }
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7, 11)}`;
+  };
+
+  const validatePhone = (phone) => {
+    const digits = phone.replace(/\D/g, '');
+    if (digits.length > 0 && digits.length < 10) {
+      setPhoneError("Telefone inválido. Use o formato (XX) XXXXX-XXXX");
+    } else {
+      setPhoneError("");
+    }
+  };
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (email && !emailRegex.test(email)) {
+      setEmailError("E-mail inválido");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const handleUserTypeChange = (type) => {
+    setFormData(prev => ({ ...prev, userType: type }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate before submitting
+    if (emailError || phoneError || !formData.userType) {
+      alert("Por favor, corrija os erros no formulário");
+      return;
+    }
+    
     setIsSubmitting(true);
 
     try {
@@ -65,7 +118,7 @@ export default function SupportPage() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center gap-4">
             <Link 
-              to={createPageUrl("Home")}
+              to="/"
               className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
             >
               <ChevronLeft className="w-8 h-8" />
@@ -92,7 +145,7 @@ export default function SupportPage() {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
               Aconteceu{" "}
-              <span className="bg-gradient-to-r from-[#145CAB] to-[#FBB03B] bg-clip-text text-transparent">
+              <span className="bg-[#145CAB] bg-clip-text text-transparent">
                 alguma coisa ?
               </span>
             </h2>
@@ -125,6 +178,35 @@ export default function SupportPage() {
                     </div>
                   ) : (
                     <form ref={form} onSubmit={handleSubmit} className="space-y-6">
+                      {/* User Type Checkboxes */}
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-gray-700">Você é: *</label>
+                        <div className="flex gap-6">
+                          <label className="flex items-center cursor-pointer">
+                            <input
+                              type="radio"
+                              name="userType"
+                              value="aluno"
+                              checked={formData.userType === "professor"}
+                              onChange={() => handleUserTypeChange("professor")}
+                              className="w-4 h-4 text-[#145CAB] border-gray-300 focus:ring-[#145CAB]"
+                            />
+                            <span className="ml-2 text-gray-700">Aluno</span>
+                          </label>
+                          <label className="flex items-center cursor-pointer">
+                            <input
+                              type="radio"
+                              name="userType"
+                              value="responsavel"
+                              checked={formData.userType === "aluno"}
+                              onChange={() => handleUserTypeChange("aluno")}
+                              className="w-4 h-4 text-[#145CAB] border-gray-300 focus:ring-[#145CAB]"
+                            />
+                            <span className="ml-2 text-gray-700">Responsável</span>
+                          </label>
+                        </div>
+                      </div>
+
                       {/* Nome e Email */}
                       <div className="grid md:grid-cols-2 gap-4">
                         <div className="space-y-2">
@@ -132,7 +214,7 @@ export default function SupportPage() {
                           <Input
                           name="form_name"
                           required
-                          value={formData.name}
+                          value={formData.form_name}
                           onChange={(e) => handleInputChange("form_name", e.target.value)}
                           placeholder="Seu nome"
                           className="border-gray-200 focus:border-[#145CAB]"
@@ -144,25 +226,28 @@ export default function SupportPage() {
                           required
                           name="form_email"
                           type="email"
-                          value={formData.email}
-                          onChange={(e) => handleInputChange("email", e.target.value)}
+                          value={formData.form_email}
+                          onChange={(e) => handleInputChange("form_email", e.target.value)}
                           placeholder="seu@email.com"
-                          className="border-gray-200 focus:border-[#145CAB]"
+                          className={`border-gray-200 focus:border-[#145CAB] ${emailError ? 'border-red-500' : ''}`}
                         />
+                        {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
                         </div>
                       </div>
 
                       {/* Telefone */}
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">Telefone</label>
+                        <label className="text-sm font-medium text-gray-700">Telefone *</label>
                         <Input
                           required
                           name="form_phone"
-                          value={formData.phone}
-                          onChange={(e) => handleInputChange("phone", e.target.value)}
+                          value={formData.form_phone}
+                          onChange={(e) => handleInputChange("form_phone", e.target.value)}
                           placeholder="(11) 99999-9999"
-                          className="border-gray-200 focus:border-[#145CAB]"
+                          maxLength="15"
+                          className={`border-gray-200 focus:border-[#145CAB] ${phoneError ? 'border-red-500' : ''}`}
                         />
+                        {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
                       </div>
 
                       {/* Mensagem */}
@@ -181,8 +266,8 @@ export default function SupportPage() {
 
                       <Button
                         type="submit"
-                        disabled={isSubmitting}
-                        className="w-full bg-[#145CAB] hover:bg-[#123f7a] text-white py-6 text-lg font-semibold rounded-xl"
+                        disabled={isSubmitting || !!emailError || !!phoneError || !formData.userType}
+                        className="w-full bg-[#145CAB] hover:bg-[#123f7a] text-white py-6 text-lg font-semibold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
                         {!isSubmitting && <Send className="w-5 h-5 ml-2" />}

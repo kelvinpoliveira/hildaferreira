@@ -67,3 +67,7 @@
       monospace;
   }
 }
+
+.hero-gradient {
+  background: linear-gradient(135deg, #145CAB 0%, #1e6bc4 100%);
+}

@@ -2,6 +2,7 @@
 import { Globe, Heart, Lightbulb, Target } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { Card } from "../../components/ui/card";
+import escolaFrente from "../../assets/images/escola.JPG"
 
 export default function About() {
   const sectionRef = useRef(null);
@@ -52,9 +53,9 @@ export default function About() {
       <div className="container mx-auto pt-8 px-4">
         <div className="text-center mb-16 scroll-fade">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Sobre a{" "}
-            <span className="bg-gradient-to-r from-[#145CAB] to-[#F4EC09] bg-clip-text text-transparent">
-              Escola Hilda Ferreira
+            Sobre o{" "}
+            <span className="bg-[#145CAB] bg-clip-text text-transparent">
+              Instituto Hilda Ferreira
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -65,7 +66,7 @@ export default function About() {
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <div className="scroll-fade">
             <img
-              src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=400&fit=crop&crop=center"
+              src={escolaFrente}
               alt="Ambiente escolar moderno"
               className="rounded-2xl shadow-xl w-full h-[400px] object-cover"
             />
@@ -74,18 +75,23 @@ export default function About() {
           <div className="space-y-6 scroll-fade">
             <h3 className="text-3xl font-bold text-gray-900">Nossa História</h3>
             <p className="text-lg text-gray-600 leading-relaxed">
-            Fundado em 17 de fevereiro de 1992, o IHF destina-se a atender alunos de Creche (a partir de 2 anos completos até 31/03), Educação Infantil (3 a 5 anos), Ensino Fundamental (1º ao 9º ano) e do Ensino Médio (1ª a 3ª séries).
+            O Instituto Hilda Ferreira iniciou suas atividades no dia 17 de fevereiro de 1992, com o nome inicial de Centro Educacional SERELEPE. SERELEPE é um animalzinho mais conhecido na nossa região como esquilo e que também significa criança esperta e viva.
             </p>
             <p className="text-lg text-gray-600 leading-relaxed">
-            A partir dos 2 anos, seu filho já pode fazer parte da Família Hilda Ferreira,
-uma escola particular em Manaus que oferece educação infantil de
-qualidade.
+            Em 1993, a fim de darmos prosseguimento para as séries do ensino fundamental e médio a SEDUC nos orientou a mudarmos de nome passando a instituição a chamar-se oficialmente de Instituto Hilda Ferreira. 
             </p>
             <p className="text-lg text-gray-600 leading-relaxed">
             <p className="text-lg text-gray-600 leading-relaxed">
-            Cada experiência vivida pelas crianças desperta novas
-habilidades, tornando o processo educacional envolvente, criativo e
-transformador.
+             - Educação Infantil (2 a 5 anos)
+            </p>
+            <p className="text-lg text-gray-600 leading-relaxed">
+             - Ensino Fundamental Anos Iniciais (1º ao 5º ano)
+            </p>
+            <p className="text-lg text-gray-600 leading-relaxed">
+             - Ensino Fundamental Anos Finais (6ª ao 9º ano)
+            </p>
+            <p className="text-lg text-gray-600 leading-relaxed">
+             - Ensino Médio (1ª a 3ª séries)
             </p>
             </p>
           </div>

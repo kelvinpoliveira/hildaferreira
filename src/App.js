@@ -5,6 +5,10 @@ import { AnalyticsContext, trackPageView } from './services/ga/AnalyticsContext'
 import Home from './views/Home';
 import SupportPage from './views/SupportPage';
 import './App.css';
+import EducacaoInfantilPage from 'views/EducacaoInfantilPage';
+import EnsinoFundamentalAnosIniciaisPage from 'views/EducacaoAnosIniciais';
+import EnsinoFundamentalAnosFinaisPage from 'views/EducacaoAnosFinais';
+import EnsinoMedioPage from 'views/EnsinoMedio';
 
 function AppRoutes() {
   const location = useLocation();
@@ -17,6 +21,10 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/Ouvidoria" element={<SupportPage />} />
+      <Route path="/Infantil" element={<EducacaoInfantilPage />} />
+      <Route path="/AnosIniciais" element={<EnsinoFundamentalAnosIniciaisPage />} />
+      <Route path="/AnosFinais" element={<EnsinoFundamentalAnosFinaisPage />} />
+      <Route path="/EnsinoMedio" element={<EnsinoMedioPage />} />
     </Routes>
   );
 }

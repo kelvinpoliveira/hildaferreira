@@ -5,6 +5,7 @@
     "checkJs": true,
     "module": "esnext",
     "target": "es2015",
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
