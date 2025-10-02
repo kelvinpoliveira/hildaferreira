@@ -8,6 +8,7 @@ import {
   Puzzle, Target, Clock, HandHelping, PenTool, Award, HeartHandshake, Calculator, FlaskConical,
   Bike, Dribbble, Paintbrush, CalendarDays, CheckSquare, Activity, CookingPot, BrainCircuit
 } from "lucide-react";
+import anosIniciaisBackground from '../assets/images/backgroundPages/anosIniciaisBackground.jpg'
 
 const FeatureCard = ({ icon: Icon, title, description, color }) => (
   <div className="flex items-start gap-4">
@@ -90,7 +91,11 @@ const diferenciais = [
 
   return (
     <div className="bg-[#FAFAF9]">
-      <header className="hero-gradient text-white relative overflow-hidden py-20">
+      <header className="text-white relative overflow-hidden py-20 bg-cover bg-center bg-no-repeat"
+        style={{ 
+          backgroundImage: `linear-gradient(rgba(20, 90, 171, 0.7), rgba(20, 90, 171, 0.7)), url(${anosIniciaisBackground})`,
+          minHeight: '400px'
+        }}>
         <div className="container mx-auto px-4 relative z-10">
           <Link to={createPageUrl()} className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors mb-8">
             <ArrowLeft className="w-5 h-5" />
@@ -109,7 +114,11 @@ const diferenciais = [
       <main className="py-20">
         <div className="container mx-auto px-4 space-y-20">
           
-          <section>
+          <section className="bg-white p-12 rounded-2xl shadow-xl">
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">Conheça mais</h2>
+            <p className="text-lg text-gray-600 leading-relaxed mb-12">
+            No Instituto Hilda Ferreira, o Ensino Fundamental Anos Iniciais é uma etapa de ampliação das descobertas: os alunos aprendem a ler, escrever, raciocinar e conviver. É o momento em que consolidam a alfabetização, ganham independência nos estudos e começam a desenvolver autonomia acadêmica e social, aprendendo a se organizar e a colaborar com os colegas.
+            </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {diferenciais.map(item => <FeatureCard key={item.title} {...item} />)}
             </div>
@@ -120,7 +129,7 @@ const diferenciais = [
               <div className="inline-block bg-gradient-to-r from-[#FBB03B] to-[#f8a01d] p-4 rounded-full mb-6">
                 <Puzzle className="w-10 h-10 text-white" />
               </div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Apoio e Inclusão</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Turmas Especiais</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                 Programas dedicados para um desenvolvimento completo e inclusivo de cada aluno.
               </p>
@@ -130,7 +139,7 @@ const diferenciais = [
             </div>
           </section>
           
-          <section>
+          <section  className="bg-white p-12 rounded-2xl shadow-xl">
             <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">Projetos Pedagógicos</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {projetos.map(projeto => (
@@ -147,29 +156,31 @@ const diferenciais = [
             </div>
           </section>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            <section>
-              <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Extracurriculares</h2>
-              <div className="grid grid-cols-3 gap-6">
-                {extracurricular.map(item => <IconCard key={item.title} {...item} />)}
-              </div>
-            </section>
-            
-            <section className="bg-green-50 p-8 rounded-2xl">
-              <h2 className="text-3xl font-bold text-green-800 text-center mb-8 flex items-center justify-center gap-3"><CalendarDays/> Ensino Integral</h2>
-              <p className="text-center text-green-700 mb-8">Disponível das 11h30 às 17h, com atividades diversificadas.</p>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {ensinoIntegral.map(item => (
-                   <div key={item.title} className="flex items-center gap-3 bg-white p-3 rounded-lg shadow">
-                     <div className={`w-8 h-8 flex-shrink-0 ${item.color} rounded-md flex items-center justify-center`}>
-                        <item.icon className="w-5 h-5 text-white" />
-                     </div>
-                     <span className="text-sm font-medium text-gray-800">{item.title}</span>
-                   </div>
-                ))}
-              </div>
-            </section>
-          </div>
+          <section  className="bg-white p-12 rounded-2xl shadow-xl">
+            <div className="grid lg:grid-cols-2 gap-12">
+              <section>
+                <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Extracurriculares</h2>
+                <div className="grid grid-cols-3 gap-6">
+                  {extracurricular.map(item => <IconCard key={item.title} {...item} />)}
+                </div>
+              </section>
+              
+              <section className="bg-green-50 p-8 rounded-2xl">
+                <h2 className="text-3xl font-bold text-green-800 text-center mb-8 flex items-center justify-center gap-3"><CalendarDays/> Ensino Integral</h2>
+                <p className="text-center text-green-700 mb-8">Disponível das 11h30 às 17h, com atividades diversificadas.</p>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {ensinoIntegral.map(item => (
+                    <div key={item.title} className="flex items-center gap-3 bg-white p-3 rounded-lg shadow">
+                      <div className={`w-8 h-8 flex-shrink-0 ${item.color} rounded-md flex items-center justify-center`}>
+                          <item.icon className="w-5 h-5 text-white" />
+                      </div>
+                      <span className="text-sm font-medium text-gray-800">{item.title}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
+          </section>
         </div>
       </main>
       <Footer />

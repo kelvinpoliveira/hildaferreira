@@ -2,10 +2,12 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "../../components/ui/button";
 import { BookOpen, Users, Award, ArrowRight, Heart, Laptop, Trophy, Bot, Target, Palette, Brain } from "lucide-react";
-import image1 from "../../assets/images/carousel/image1.png";
+import image1 from "../../assets/images/carousel/image1.jpg";
 import image2 from "../../assets/images/carousel/image2.png";
 import image3 from "../../assets/images/carousel/image3.png";
 import image4 from "../../assets/images/carousel/image4.png";
+import image5 from "../../assets/images/carousel/image5.png";
+import image6 from "../../assets/images/carousel/image6.png";
 import { Carousel } from "@material-tailwind/react";
 
 export default function Hero() {
@@ -47,6 +49,10 @@ export default function Hero() {
       icon: Palette,
       title: "Escolinha Esportes e Artes",
     },
+    {
+      icon: Palette,
+      title: "Programas Socioemocionais",
+    },
   ];
 
   return (
@@ -57,7 +63,7 @@ export default function Hero() {
       <div className="absolute bottom-20 left-10 w-48 h-48 bg-[#FBB03B] opacity-10 rounded-full blur-2xl" style={{ animationDelay: "2s" }}></div>
     </div>
 
-    <div className="container mx-auto px-4 py-20 relative z-10">
+    <div className="w-[80%] mx-auto px-4 py-20 relative z-10">
       <div className="grid lg:grid-cols-2 gap-8 items-center">
         <div className={`space-y-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
           <div className="space-y-4">
@@ -88,23 +94,12 @@ export default function Hero() {
             </Button>
             
             <Button
-              onClick={() => scrollToSection("#about")}
+              onClick={() => scrollToSection("#programs")}
               variant="outline"
               className="bg-[#145CAB] border-white/30 text-white hover:text-white/90 hover:bg-white/10 px-8 py-6 text-lg rounded-xl backdrop-blur-sm"
             >
               Conheça nossos segmentos 
             </Button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3 gap-4 pt-8">
-              {highlights.map((highlight, index) => (
-                <div key={index} className="flex items-start items-center gap-3 text-white/90 bg-white/5 backdrop-blur-sm rounded-lg p-4">
-                  <highlight.icon className="w-6 h-6 text-[#F4EC09] flex-shrink-0 mt-1" />
-                  <div>
-                    <div className="font-semibold text-base mb-1">{highlight.title}</div>
-                  </div>
-                </div>
-              ))}
           </div>
         </div>
 
@@ -157,6 +152,20 @@ export default function Hero() {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
+              <div className="relative w-full aspect-[16/9]">
+                <img
+                  src={image5}
+                  alt="Infraestrutura escolar"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+              <div className="relative w-full aspect-[16/9]">
+                <img
+                  src={image6}
+                  alt="Infraestrutura escolar"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
             </Carousel>
             
             <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-2xl">
@@ -171,6 +180,17 @@ export default function Hero() {
           
           <div className="absolute inset-0 bg-gradient-to-r from-[#145CAB]/20 to-transparent rounded-2xl"></div>
         </div>
+      </div>
+
+      <div className="pt-[5%] grid grid-cols-1 md:grid-cols-7 lg:grid-cols-1 xl:grid-cols-7 gap-4 pt-8">
+        {highlights.map((highlight, index) => (
+          <div key={index} className="flex items-start items-center gap-3 text-white/90 bg-white/5 backdrop-blur-sm rounded-lg p-4">
+            <highlight.icon className="w-6 h-6 text-[#F4EC09] flex-shrink-0 mt-1" />
+            <div>
+              <div className="font-semibold text-base mb-1">{highlight.title}</div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </section>

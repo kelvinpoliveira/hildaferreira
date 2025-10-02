@@ -7,6 +7,7 @@ import {
   Users2, PenSquare, BookUser, Palette, Trophy, CalendarDays, Paintbrush, Dribbble,
   Volleyball, CheckSquare, Activity, CookingPot
 } from "lucide-react";
+import anosFinaisBackground from '../assets/images/backgroundPages/anosFinaisBackground.jpg'
 
 const FeatureCard = ({ icon: Icon, title, description, color }) => (
   <div className="flex items-start gap-4">
@@ -74,7 +75,11 @@ export default function EnsinoFundamentalAnosFinaisPage() {
 
   return (
     <div className="bg-[#FAFAF9]">
-      <header className="hero-gradient text-white relative overflow-hidden py-20">
+      <header className="text-white relative overflow-hidden py-20 bg-cover bg-center bg-no-repeat"
+        style={{ 
+          backgroundImage: `linear-gradient(rgba(20, 90, 171, 0.7), rgba(20, 90, 171, 0.7)), url(${anosFinaisBackground})`,
+          minHeight: '400px'
+        }}>
         <div className="container mx-auto px-4 relative z-10">
           <Link to={createPageUrl("Home")} className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors mb-8">
             <ArrowLeft className="w-5 h-5" />
@@ -94,7 +99,7 @@ export default function EnsinoFundamentalAnosFinaisPage() {
       <main className="py-20">
         <div className="container mx-auto px-4 space-y-20">
           
-          <section>
+          <section className="bg-white p-12 rounded-2xl shadow-xl">
             <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">Cultura de Estudo</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {culturaEstudo.map(item => <FeatureCard key={item.title} {...item} />)}

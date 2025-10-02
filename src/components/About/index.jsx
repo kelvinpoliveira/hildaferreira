@@ -75,10 +75,10 @@ export default function About() {
           <div className="space-y-6 scroll-fade">
             <h3 className="text-3xl font-bold text-gray-900">Nossa História</h3>
             <p className="text-lg text-gray-600 leading-relaxed">
-            O Instituto Hilda Ferreira iniciou suas atividades no dia 17 de fevereiro de 1992, com o nome inicial de Centro Educacional SERELEPE. SERELEPE é um animalzinho mais conhecido na nossa região como esquilo e que também significa criança esperta e viva.
+            O Instituto Hilda Ferreira iniciou suas atividades no dia 17 de fevereiro de 1992, com o nome inicial de <b>Centro Educacional SERELEPE.</b> Em 1993, para ampliar o ensino fundamental e médio, a SEDUC orientou a mudança de nome, passando a se chamar <b>Instituto Hilda Ferreira.</b>
             </p>
             <p className="text-lg text-gray-600 leading-relaxed">
-            Em 1993, a fim de darmos prosseguimento para as séries do ensino fundamental e médio a SEDUC nos orientou a mudarmos de nome passando a instituição a chamar-se oficialmente de Instituto Hilda Ferreira. 
+            Pautada em <b>princípios e valores cristãos</b>, a instituição alia formação acadêmica e desenvolvimento humano, promovendo a construção de cidadãos integrais nos aspectos físicos, cognitivos, emocionais e espirituais.
             </p>
             <p className="text-lg text-gray-600 leading-relaxed">
             <p className="text-lg text-gray-600 leading-relaxed">

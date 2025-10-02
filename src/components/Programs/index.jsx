@@ -3,9 +3,15 @@ import React, { useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 // import { Badge } from "@/components/ui/badge";
 import { BookOpen, Palette, Calculator, Globe, Microscope, Music, BookOpenCheck, ClipboardList, HandHelping, Smartphone, MessageCircle, Stethoscope, Bot, Library, Dribbble, PersonStanding, FlaskConical } from "lucide-react";
+import educacaoInfantil from "../../assets/images/educacoInfantil.png"
+import anosIniciais from "../../assets/images/anosIniciais.png"
+import anosFinais from "../../assets/images/anosFinais.png"
+import ensinoMedio from "../../assets/images/ensinoMedio.png"
+import { useNavigate } from 'react-router-dom';
 
 export default function Programs() {
   const sectionRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -29,14 +35,20 @@ export default function Programs() {
     {
       icon: BookOpen,
       title: "Educação Infantil",
+      image: educacaoInfantil,
+      link: "Infantil",
+      bgColorButton: "bg-[#F57D2F]",
       age: "3 a 5 anos",
       description: "Cada experiência vivida pelas crianças desperta novas habilidades, tornando o processo educacional envolvente, criativo e transformador.",
-      features: ["Método Fônico", "Método de ensino estruturado", "Judô e Balé", "Inglês desde cedo", "Turmas reduzidas"],
+      features: ["Método Fônico", "Método de Ensino Estruturado", "Judô e Balé", "Inglês desde cedo", "Turmas reduzidas"],
    
     },
     {
       icon: Calculator,
       title: "Ensino Fundamental Anos Iniciais",
+      image: anosIniciais,
+      link: "AnosIniciais",
+      bgColorButton: "bg-[#EA434F]",
       age: "6 a 10 anos",
       description: "É o momento em que consolidam a alfabetização, ganham independência nos estudos e começam a desenvolver autonomia acadêmica e social.",
       features: ["Aplicativos Gamificados", "Robótica", "Ensino Integral", "Educação Cristã", " Simulados Semestrais"],
@@ -44,6 +56,9 @@ export default function Programs() {
     {
       icon: Microscope,
       title: "Ensino Fundamental Anos Finais",
+      image: anosFinais,
+      link: "AnosFinais",
+      bgColorButton: "bg-[#124074]",
       age: "11 a 14 anos",
       description: "Aprofundamento das disciplinas com foco no desenvolvimento do pensamento crítico e na preparação para o ensino médio.",
       features: ["Olimpíadas Científicas", "Robótica", "Ensino Integral", "Programa Socioemocional Positivando", "Serviço de Apoio ao Aluno"],
@@ -51,6 +66,9 @@ export default function Programs() {
     {
       icon: BookOpenCheck,
       title: "Ensino Médio",
+      image: ensinoMedio,
+      link: "EnsinoMedio",
+      bgColorButton: "bg-[#305570]",
       age: "14 a 16 anos",
       description: "Com uma proposta pedagógica inovadora, aliamos conteúdo de qualidade, práticas dinâmicas e foco em resultados para o ENEM e vestibulares.",
       features: ["Aplicação de Teste de Orientação Profissional", "Serviço de Apoio ao Aluno", "Robótica", "Simulados SIS, PSC e ENEM", "Projeto Redação Nota 1000"],
@@ -81,6 +99,11 @@ export default function Programs() {
     { icon: FlaskConical, name: "Laboratório de Ciências", color: "bg-[#FBB03B]" }
   ];
 
+  const callPageUrl = (page) => {
+    navigate(`/${page}`)
+    window.scrollTo(0, 0)
+  }
+
   return (
     <section id="programs" ref={sectionRef} className="py-20 bg-white">
       <div className="container pt-8 mx-auto px-4">
@@ -98,41 +121,49 @@ export default function Programs() {
 
         <div className="grid lg:grid-cols-4 gap-8 mb-16">
           {programs.map((program, index) => (
-            <Card
-              key={index}
-              className="scroll-fade border-none shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden"
-              style={{ animationDelay: `${index * 200}ms` }}
-            >
-              <div className={`h-2 bg-[#145CAB]`}></div>
-              
-              <CardHeader className="pb-4">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className={`w-12 h-12 bg- rounded-xl flex items-center justify-center`}>
-                    <program.icon className="w-6 h-6 text-[#145CAB]" />
+            <div className="flex flex-col h-full">
+              <img 
+              src={program.image}
+              alt="educacaoInfantil"
+              className="mb-0"
+              />
+              <Card
+                key={index}
+                className="scroll-fade border-none shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden flex-1 flex flex-col"
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                      {/* <div className={`h-2 bg-[#145CAB]`}></div> */}
+                <CardHeader className="pb-4">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className={`w-12 h-12 bg- rounded-xl flex items-center justify-center`}>
+                      <program.icon className="w-6 h-6 text-[#145CAB]" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-xl text-gray-900">{program.title}</CardTitle>
+                    </div>
                   </div>
-                  <div>
-                    <CardTitle className="text-xl text-gray-900">{program.title}</CardTitle>
-                    {/* <Badge variant="secondary" className="mt-1">{program.age}</Badge> */}
-                  </div>
-                </div>
-              </CardHeader>
+                </CardHeader>
 
-              <CardContent className="space-y-4">
-                <p className="text-gray-600 leading-relaxed">{program.description}</p>
-                
-                <div className="space-y-2">
-                  <h4 className="font-semibold text-gray-900">Destaques:</h4>
-                  <ul className="space-y-1">
-                    {program.features.map((feature, idx) => (
-                      <li key={idx} className="text-gray-600 flex items-center gap-2">
-                        <div className="w-2 h-2 bg-[#FBB03B] rounded-full"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
+                <CardContent className="space-y-4 flex-1 flex flex-col">
+                  <p className="text-gray-600 leading-relaxed">{program.description}</p>
+                  
+                  <div className="space-y-2 flex-1">
+                    <h4 className="font-semibold text-gray-900">Destaques:</h4>
+                    <ul className="space-y-1">
+                      {program.features.map((feature, idx) => (
+                        <li key={idx} className="text-gray-600 flex items-center gap-2">
+                          <div className="w-2 h-2 bg-[#FBB03B] rounded-full"></div>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <button onClick={() => callPageUrl(program.link)} className={`${program.bgColorButton} w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-auto`}>
+                    Saiba mais
+                  </button>
+                </CardContent>
+              </Card>
+            </div>
           ))}
         </div>
 

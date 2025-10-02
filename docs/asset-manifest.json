@@ -1,21 +1,31 @@
 {
   "files": {
-    "main.css": "./static/css/main.b02d920c.css",
-    "main.js": "./static/js/main.42a02111.js",
+    "main.css": "./static/css/main.6b27fd25.css",
+    "main.js": "./static/js/main.07760ffb.js",
     "static/js/453.864c2f47.chunk.js": "./static/js/453.864c2f47.chunk.js",
     "static/media/escola.JPG": "./static/media/escola.2c39a7bad8af963f1ab0.JPG",
-    "static/media/image3.png": "./static/media/image3.85fb033488dd7ba35e58.png",
-    "static/media/image4.png": "./static/media/image4.d793f13b89558beb3891.png",
-    "static/media/image1.png": "./static/media/image1.d5f213b2f4e7e37f6c4b.png",
-    "static/media/image2.png": "./static/media/image2.8ac1ae94973d424e280e.png",
+    "static/media/anosFinais.png": "./static/media/anosFinais.4d95c6c06f9e381668bc.png",
+    "static/media/ensinoMedio.png": "./static/media/ensinoMedio.86f4b01a88c49d22e8c1.png",
+    "static/media/anosIniciais.png": "./static/media/anosIniciais.bd7bef62fdededbdc166.png",
+    "static/media/educacoInfantil.png": "./static/media/educacoInfantil.7595c3c0d472c9206f16.png",
+    "static/media/image6.png": "./static/media/image6.8a49099c562f604176c6.png",
+    "static/media/image2.png": "./static/media/image2.a1e06069684c6ec1a66b.png",
+    "static/media/image3.png": "./static/media/image3.67158fbaa115926bed40.png",
+    "static/media/image4.png": "./static/media/image4.521f026390e699876e44.png",
+    "static/media/image5.png": "./static/media/image5.8ea79c7a771bfff1f46a.png",
+    "static/media/image1.jpg": "./static/media/image1.af8813e8bd42200a355b.jpg",
+    "static/media/ensinoMedioBackground.jpg": "./static/media/ensinoMedioBackground.32385a264c9b56b07411.jpg",
+    "static/media/anosIniciaisBackground.jpg": "./static/media/anosIniciaisBackground.06e170c56f91a4b9c55d.jpg",
+    "static/media/anosFinaisBackground.jpg": "./static/media/anosFinaisBackground.fcb2384a67a0f141bcc0.jpg",
+    "static/media/educacaoInfantilBackground.jpg": "./static/media/educacaoInfantilBackground.691519acf8bafdd80294.jpg",
     "static/media/logo.webp": "./static/media/logo.4b291cea33472ed4f064.webp",
     "index.html": "./index.html",
-    "main.b02d920c.css.map": "./static/css/main.b02d920c.css.map",
-    "main.42a02111.js.map": "./static/js/main.42a02111.js.map",
+    "main.6b27fd25.css.map": "./static/css/main.6b27fd25.css.map",
+    "main.07760ffb.js.map": "./static/js/main.07760ffb.js.map",
     "453.864c2f47.chunk.js.map": "./static/js/453.864c2f47.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b02d920c.css",
-    "static/js/main.42a02111.js"
+    "static/css/main.6b27fd25.css",
+    "static/js/main.07760ffb.js"
   ]
 }

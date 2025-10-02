@@ -6,6 +6,7 @@ import {
   ArrowLeft, Milestone, Clock, Target, Users2, Lightbulb, Route, Sparkles,
   ClipboardCheck, Trophy, CalendarDays, Bot, Map, Scroll, Feather, PenTool, Star
 } from "lucide-react";
+import ensinoMedioBackground from '../assets/images/backgroundPages/ensinoMedioBackground.jpg'
 
 const FeatureCard = ({ icon: Icon, title, description, color, children }) => (
   <div className="flex items-start gap-4">
@@ -30,7 +31,7 @@ export default function EnsinoMedioPage() {
   const preparacao = [
     { icon: Clock, title: "1ª e 2ª séries", description: "1ª e 2ª séries: 30h semanais, todos os conteúdos do EM", color: "bg-[#145CAB]" },
     { icon: Target, title: "3ª série (Terceirão)", description: "30h semanais, Foco em vestibulares e ENEM", color: "bg-[#1e6bc4]" },
-    { icon: Users2, title: "Reforço Escolar", description: "Reforço escolar contraturno em matemática, física, química, biologia e português.", color: "bg-[#145CAB]" },
+    { icon: Users2, title: "Reforço escolar no contraturno", description: "Em matemática, física, química, biologia e português.", color: "bg-[#145CAB]" },
     { icon: Lightbulb, title: "Projeto de Vida", description: "Orientação profissional, organização de estudos, diálogos com profissionais.", color: "bg-[#1e6bc4]" },
     { icon: Route, title: "Itinerários Formativos", description: "Oficinas por área do conhecimento", color: "bg-[#145CAB]" },
     { icon: Trophy, title: "Olimpíadas Científicas", description: "São competições de conhecimento que visam estimular o aprendizado, além de preparar para o ingresso em universidades.", color: "bg-[#145CAB]" }
@@ -58,7 +59,12 @@ export default function EnsinoMedioPage() {
 
   return (
     <div className="bg-[#FAFAF9]">
-      <header className="hero-gradient text-white relative overflow-hidden py-20">
+      <header 
+        className="text-white relative overflow-hidden py-20 bg-cover bg-center bg-no-repeat"
+        style={{ 
+          backgroundImage: `linear-gradient(rgba(20, 90, 171, 0.7), rgba(20, 90, 171, 0.7)), url(${ensinoMedioBackground})`,
+          minHeight: '400px'
+        }}>
         <div className="container mx-auto px-4 relative z-10">
           <Link to={createPageUrl("Home")} className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors mb-8">
             <ArrowLeft className="w-5 h-5" />
@@ -87,8 +93,12 @@ export default function EnsinoMedioPage() {
           <section className="bg-white p-12 rounded-2xl shadow-xl">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">Preparação Completa para o Sucesso</h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Ferramentas e programas que garantem um diferencial competitivo para nossos alunos.
+              <p className="text-lg text-gray-600 mx-auto justify-center">
+              No Instituto Hilda Ferreira, o Ensino Médio é muito mais do que a etapa final da educação básica: é o momento de consolidar conhecimentos, descobrir talentos e definir caminhos para o futuro. Nossa proposta pedagógica alia
+conteúdo de excelência a práticas inovadoras, tornando o aprendizado
+significativo e preparando os alunos para os desafios do ENEM, vestibulares
+e da vida acadêmica e profissional.
+
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -96,7 +106,7 @@ export default function EnsinoMedioPage() {
             </div>
           </section>
           
-          <section>
+          <section className="bg-white p-12 rounded-2xl shadow-xl">
             <div className="text-center mb-12">
               <div className="inline-block bg-gradient-to-r from-[#FBB03B] to-[#f8a01d] p-4 rounded-full mb-6">
                 <Sparkles className="w-10 h-10 text-white" />
@@ -118,7 +128,7 @@ export default function EnsinoMedioPage() {
             </div>
           </section>
 
-          <section>
+          <section className="bg-white p-12 rounded-2xl shadow-xl">
             <div className="text-center mb-12">
               <div className="inline-block bg-[#ED1C24] p-4 rounded-full mb-6">
                 <CalendarDays className="w-8 h-8 text-white" />  
@@ -136,28 +146,6 @@ export default function EnsinoMedioPage() {
               ))}
             </div>
           </section>
-
-          {/* <section>
-            <Card className="border-none shadow-xl bg-gradient-to-r from-[#ED1C24] to-[#c91820] text-white">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-3xl">
-                  <CalendarDays className="w-8 h-8" />
-                  Eventos que Marcam
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-4">
-                  {eventos.map(evento => (
-                    <div key={evento} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                      <Star className="w-4 h-4 text-[#F4EC09]" />
-                      <span className="font-medium">{evento}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </section> */}
-
         </div>
       </main>
       <Footer />

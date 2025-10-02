@@ -10,6 +10,8 @@ export function Navbar() {
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mobileEnsinoOpen, setMobileEnsinoOpen] = useState(false);
+  const [mobileAreaOpen, setMobileAreaOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,7 +54,7 @@ export function Navbar() {
           : "bg-[#145CAB]"
       }`}
     >
-      <div className="container mx-auto px-4 py-4">
+      <div className="w-[80%] mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
             <Link
             to={createPageUrl}
@@ -251,15 +253,120 @@ export function Navbar() {
           <div className="lg:hidden mt-4 bg-white rounded-xl shadow-xl p-4">
             <nav className="flex flex-col gap-4">
               {navigation.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => {
-                    item.name === "Ouvidoria" ? navigate("#ouvidoria") : scrollToSection(item.href)
-                  }}
-                  className="text-left font-medium text-gray-700 hover:text-[#145CAB] transition-colors"
-                >
-                  {item.name}
-                </button>
+                item.name === "Ensino" ? (
+                  <div key={item.name}>
+                    <button
+                      onClick={() => setMobileEnsinoOpen(!mobileEnsinoOpen)}
+                      className="w-full text-left font-medium text-gray-700 hover:text-[#145CAB] transition-colors flex items-center justify-between"
+                    >
+                      {item.name}
+                      <ChevronDown className={`w-4 h-4 transition-transform ${mobileEnsinoOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    {mobileEnsinoOpen && (
+                      <div className="ml-4 mt-2 flex flex-col gap-2">
+                        <button
+                          onClick={() => {
+                            callPageUrl("Infantil");
+                            setIsMobileMenuOpen(false);
+                          }}
+                          className="text-left text-sm text-gray-600 hover:text-[#145CAB] transition-colors"
+                        >
+                          Educação Infantil
+                        </button>
+                        <button
+                          onClick={() => {
+                            callPageUrl("AnosIniciais");
+                            setIsMobileMenuOpen(false);
+                          }}
+                          className="text-left text-sm text-gray-600 hover:text-[#145CAB] transition-colors"
+                        >
+                          Ensino Fundamental Anos Iniciais
+                        </button>
+                        <button
+                          onClick={() => {
+                            callPageUrl("AnosFinais");
+                            setIsMobileMenuOpen(false);
+                          }}
+                          className="text-left text-sm text-gray-600 hover:text-[#145CAB] transition-colors"
+                        >
+                          Ensino Fundamental Anos Finais
+                        </button>
+                        <button
+                          onClick={() => {
+                            callPageUrl("EnsinoMedio");
+                            setIsMobileMenuOpen(false);
+                          }}
+                          className="text-left text-sm text-gray-600 hover:text-[#145CAB] transition-colors"
+                        >
+                          Ensino Médio
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ) : item.name === "Área Exclusiva" ? (
+                  <div key={item.name}>
+                    <button
+                      onClick={() => setMobileAreaOpen(!mobileAreaOpen)}
+                      className="w-full text-left font-medium text-gray-700 hover:text-[#145CAB] transition-colors flex items-center justify-between"
+                    >
+                      {item.name}
+                      <ChevronDown className={`w-4 h-4 transition-transform ${mobileAreaOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    {mobileAreaOpen && (
+                      <div className="ml-4 mt-2 flex flex-col gap-2">
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://siga04.activesoft.com.br/login/?instituicao=HILDAFERREIRA"
+                          className="text-left text-sm text-gray-600 hover:text-[#145CAB] transition-colors"
+                        >
+                          Área do Aluno
+                        </a>
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://siga04.activesoft.com.br/login/?instituicao=HILDAFERREIRA"
+                          className="text-left text-sm text-gray-600 hover:text-[#145CAB] transition-colors"
+                        >
+                          Área do Professor
+                        </a>
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://pmais.p4ed.com/"
+                          className="text-left text-sm text-gray-600 hover:text-[#145CAB] transition-colors"
+                        >
+                          Portal Poliedro
+                        </a>
+                        <button
+                          onClick={() => {
+                            navigate("/Ouvidoria");
+                            setIsMobileMenuOpen(false);
+                          }}
+                          className="text-left text-sm text-gray-600 hover:text-[#145CAB] transition-colors"
+                        >
+                          Ouvidoria
+                        </button>
+                        <button
+                          className="text-left text-sm text-gray-600 hover:text-[#145CAB] transition-colors"
+                        >
+                          Linha Ética
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <button
+                    key={item.name}
+                    onClick={() => {
+                      item.name === "Ouvidoria" ? navigate("/Ouvidoria") : scrollToSection(item.href);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="text-left font-medium text-gray-700 hover:text-[#145CAB] transition-colors"
+                  >
+                    {item.name}
+                  </button>
+                )
               ))}
             </nav>
           </div>
