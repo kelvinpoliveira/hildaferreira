@@ -6,6 +6,7 @@ import About from 'components/About/index';
 import Programs from 'components/Programs/index';
 import ContactForm from 'components/ContactForm/index';
 import Footer from 'components/Footer/index';
+import Testimonials from 'components/Testemonials/index'
 import { useContext } from 'react';
 import {AnalyticsContext} from 'services/ga/AnalyticsContext'
 import ReactGA from 'react-ga4';
@@ -30,6 +31,7 @@ const Home = () => {
       <Hero />
       <About />
       <Programs />
+      <Testimonials />
       <ContactForm />
       <Footer />
     </div>

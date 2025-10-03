@@ -72,7 +72,7 @@ export function Navbar() {
                     Instituto Hilda Ferreira
                   </h1>
                   <p className={`text-sm ${isScrolled ? "text-gray-600" : "text-white/80"}`}>
-                    Muito mais do que uma escola, uma grande família
+                    Muito mais que uma escola, uma grande família
                   </p>
                 </div>
               </div>
@@ -189,20 +189,7 @@ export function Navbar() {
                       </MenuItem>
                       <MenuItem>
                         {({ active }) => (
-                          <button className={`${
-                            active ? 'bg-gray-100' : ''
-                          } block w-full text-left px-4 py-2 text-sm text-gray-700`}
-                          onClick={() => {
-                            console.log(item)
-                            navigate("/Ouvidoria")
-                          }}>
-                            Ouvidoria
-                          </button>
-                        )}
-                      </MenuItem>
-                      <MenuItem>
-                        {({ active }) => (
-                          <button className={`${
+                          <button onClick={() => callPageUrl("LinhaEtica")} className={`${
                             active ? 'bg-gray-100' : ''
                           } block w-full text-left px-4 py-2 text-sm text-gray-700`}>
                             Linha Ética

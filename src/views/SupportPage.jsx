@@ -186,9 +186,9 @@ export default function SupportPage() {
                             <input
                               type="radio"
                               name="userType"
-                              value="aluno"
-                              checked={formData.userType === "professor"}
-                              onChange={() => handleUserTypeChange("professor")}
+                              value="Aluno"
+                              checked={formData.userType === "Aluno"}
+                              onChange={() => handleUserTypeChange("Aluno")}
                               className="w-4 h-4 text-[#145CAB] border-gray-300 focus:ring-[#145CAB]"
                             />
                             <span className="ml-2 text-gray-700">Aluno</span>
@@ -197,9 +197,9 @@ export default function SupportPage() {
                             <input
                               type="radio"
                               name="userType"
-                              value="responsavel"
-                              checked={formData.userType === "aluno"}
-                              onChange={() => handleUserTypeChange("aluno")}
+                              value="Responsável"
+                              checked={formData.userType === "Responsável"}
+                              onChange={() => handleUserTypeChange("Responsável")}
                               className="w-4 h-4 text-[#145CAB] border-gray-300 focus:ring-[#145CAB]"
                             />
                             <span className="ml-2 text-gray-700">Responsável</span>

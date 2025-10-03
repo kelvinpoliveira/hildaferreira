@@ -9,6 +9,7 @@ import EducacaoInfantilPage from 'views/EducacaoInfantilPage';
 import EnsinoFundamentalAnosIniciaisPage from 'views/EducacaoAnosIniciais';
 import EnsinoFundamentalAnosFinaisPage from 'views/EducacaoAnosFinais';
 import EnsinoMedioPage from 'views/EnsinoMedio';
+import LinhaEticaPage from 'views/LinhaEtica';
 
 function AppRoutes() {
   const location = useLocation();
@@ -25,6 +26,7 @@ function AppRoutes() {
       <Route path="/AnosIniciais" element={<EnsinoFundamentalAnosIniciaisPage />} />
       <Route path="/AnosFinais" element={<EnsinoFundamentalAnosFinaisPage />} />
       <Route path="/EnsinoMedio" element={<EnsinoMedioPage />} />
+      <Route path="/LinhaEtica" element={<LinhaEticaPage />} />
     </Routes>
   );
 }

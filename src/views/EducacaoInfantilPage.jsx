@@ -59,7 +59,7 @@ export default function EducacaoInfantilPage() {
     <div className="bg-[#FAFAF9]">
       {/* Header Section */}
       <header 
-        className="text-white relative overflow-hidden py-20 bg-cover bg-center bg-no-repeat"
+        className="text-white relative overflow-hidden py-20 bg-auto bg-center bg-no-repeat"
         style={{ 
           backgroundImage: `linear-gradient(rgba(20, 90, 171, 0.7), rgba(20, 90, 171, 0.7)), url(${educacaoInfantilBg})`,
           minHeight: '400px'
