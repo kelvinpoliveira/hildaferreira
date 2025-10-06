@@ -71,7 +71,11 @@ export default function ContactSection() {
             position: 'top-right',
           });
         },
-        (error) => {},
+        (error) => {
+          toast.error('Algo de errado aconteceu. Por favor, tente novamente.', {
+            position: 'top-right',
+          });
+        },
       );
       
       setTimeout(() => setIsSuccess(false), 5000);
