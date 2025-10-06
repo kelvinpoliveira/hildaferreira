@@ -61,10 +61,12 @@ export function Navbar() {
             className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
           >
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center">
+                <div className="w-16 h-16 rounded-xl flex items-center justify-center">
                   <img 
                   src={logo}
                   alt="logo"
+                  // height={140}
+                  // width={140}
                   />
                 </div>
                 <div>
@@ -171,7 +173,7 @@ export function Navbar() {
                       </MenuItem>
                       <MenuItem>
                         {({ active }) => (
-                          <a target="_blank" rel="noopener noreferrer" href="https://siga04.activesoft.com.br/login/?instituicao=HILDAFERREIRA" className={`${
+                          <a target="_blank" rel="noopener noreferrer" href="https://portal.sophia.com.br/SophiA_99/Acesso.aspx?escola=7377" className={`${
                             active ? 'bg-gray-100' : ''
                           } block w-full text-left px-4 py-2 text-sm text-gray-700`}>
                             Área do Professor
@@ -304,7 +306,7 @@ export function Navbar() {
                         <a
                           target="_blank"
                           rel="noopener noreferrer"
-                          href="https://siga04.activesoft.com.br/login/?instituicao=HILDAFERREIRA"
+                          href="https://portal.sophia.com.br/SophiA_99/Acesso.aspx?escola=7377"
                           className="text-left text-sm text-gray-600 hover:text-[#145CAB] transition-colors"
                         >
                           Área do Aluno
@@ -312,7 +314,7 @@ export function Navbar() {
                         <a
                           target="_blank"
                           rel="noopener noreferrer"
-                          href="https://siga04.activesoft.com.br/login/?instituicao=HILDAFERREIRA"
+                          href="https://portal.sophia.com.br/SophiA_99/Acesso.aspx?escola=7377"
                           className="text-left text-sm text-gray-600 hover:text-[#145CAB] transition-colors"
                         >
                           Área do Professor

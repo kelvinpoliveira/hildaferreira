@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.25922c43.css",
-    "main.js": "./static/js/main.a3903b4a.js",
+    "main.css": "./static/css/main.b18c3c75.css",
+    "main.js": "./static/js/main.c6a5db4a.js",
     "static/js/453.864c2f47.chunk.js": "./static/js/453.864c2f47.chunk.js",
     "static/media/escola.JPG": "./static/media/escola.2c39a7bad8af963f1ab0.JPG",
     "static/media/anosFinais.png": "./static/media/anosFinais.4d95c6c06f9e381668bc.png",
@@ -24,12 +24,12 @@
     "static/media/educacaoInfantilBackground.jpg": "./static/media/educacaoInfantilBackground.691519acf8bafdd80294.jpg",
     "static/media/logo.webp": "./static/media/logo.4b291cea33472ed4f064.webp",
     "index.html": "./index.html",
-    "main.25922c43.css.map": "./static/css/main.25922c43.css.map",
-    "main.a3903b4a.js.map": "./static/js/main.a3903b4a.js.map",
+    "main.b18c3c75.css.map": "./static/css/main.b18c3c75.css.map",
+    "main.c6a5db4a.js.map": "./static/js/main.c6a5db4a.js.map",
     "453.864c2f47.chunk.js.map": "./static/js/453.864c2f47.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.25922c43.css",
-    "static/js/main.a3903b4a.js"
+    "static/css/main.b18c3c75.css",
+    "static/js/main.c6a5db4a.js"
   ]
 }

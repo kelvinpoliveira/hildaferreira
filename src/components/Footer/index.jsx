@@ -76,7 +76,7 @@ export default function Footer() {
             <h4 className="font-bold text-lg mb-6 text-[#145CAB]">Localização</h4>
             <div className="w-full h-64 rounded-lg overflow-hidden shadow-lg">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.0834063361707!2d-59.99544562377589!3d-3.069300896767599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x926c1a7bd5555555%3A0x7516b7c6e7a3d8f9!2sRua%20Carabu%C3%A7u%2C%2067%20-%20Novo%20Aleixo%2C%20Manaus%20-%20AM%2C%2069098-080!5e0!3m2!1spt-BR!2sbr!4v1234567890123"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.166904044643!2d-59.97468289999999!3d-3.0499379000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x926c1bca0ffffff9%3A0xd29da23fa56e39bf!2sInstituto%20Hilda%20Ferreira!5e0!3m2!1spt-BR!2sbr!4v1759758358280!5m2!1spt-BR!2sbr"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

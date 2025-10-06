@@ -169,7 +169,7 @@ export default function Hero() {
             </Carousel>
             
             <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-2xl">
-              <div className="text-[#145CAB] font-bold text-2xl">30+</div>
+              <div className="text-[#145CAB] font-bold text-2xl">+30</div>
               <div className="text-gray-600 font-medium">Anos de Tradição</div>
             </div>
             

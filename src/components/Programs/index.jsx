@@ -77,26 +77,26 @@ export default function Programs() {
 
   const extracurricular = [
     { icon: Globe, name: "Funcional Kids", color: "bg-[#145CAB]" },
-    { icon: Music, name: "Basquete", color: "bg-[#FBB03B]" },
-    { icon: Palette, name: "Curso de desenho", color: "bg-[#F4EC09]" },
-    { icon: Calculator, name: "Ensino Integral", color: "bg-[#ED1C24]" }
+    { icon: Music, name: "Basquete", color: "bg-[#145CAB]" },
+    { icon: Palette, name: "Curso de desenho", color: "bg-[#145CAB]" },
+    { icon: Calculator, name: "Ensino Integral", color: "bg-[#145CAB]" }
   ];
 
   const servicosApoio = [
-    { icon: ClipboardList, name: "Coordenação Pedagógica", color: "bg-[#145CAB]" },
-    { icon: HandHelping, name: "Psicologia Escolar", color: "bg-[#FBB03B]" }, // Changed HeartHand to HandHelping
+    { icon: ClipboardList, name: "Coordenação Pedagógica", color: "bg-[#F4EC09]" },
+    { icon: HandHelping, name: "Psicologia Escolar", color: "bg-[#F4EC09]" }, // Changed HeartHand to HandHelping
     { icon: Smartphone, name: "Agenda Digital", color: "bg-[#F4EC09]" },
-    { icon: MessageCircle, name: "Canal de Ouvidoria", color: "bg-[#ED1C24]" },
-    { icon: Stethoscope, name: "Enfermaria", color: "bg-[#145CAB]" }
+    { icon: MessageCircle, name: "Canal de Ouvidoria", color: "bg-[#F4EC09]" },
+    { icon: Stethoscope, name: "Enfermaria", color: "bg-[#F4EC09]" }
   ];
 
   const nossaEstrutura = [
-    { icon: Palette, name: "Sala de Artes", color: "bg-[#FBB03B]" },
+    { icon: Palette, name: "Sala de Artes", color: "bg-[#ED1C24]" },
     { icon: Bot, name: "Sala de Robótica", color: "bg-[#ED1C24]" },
-    { icon: Library, name: "Biblioteca", color: "bg-[#145CAB]" },
-    { icon: Dribbble, name: "Quadras Poliesportivas", color: "bg-[#F4EC09]" },
-    { icon: PersonStanding, name: "Sala de Balé", color: "bg-[#145CAB]" },
-    { icon: FlaskConical, name: "Laboratório de Ciências", color: "bg-[#FBB03B]" }
+    { icon: Library, name: "Biblioteca", color: "bg-[#ED1C24]" },
+    { icon: Dribbble, name: "Quadras Poliesportivas", color: "bg-[#ED1C24]" },
+    { icon: PersonStanding, name: "Sala de Balé", color: "bg-[#ED1C24]" },
+    { icon: FlaskConical, name: "Laboratório de Ciências", color: "bg-[#ED1C24]" }
   ];
 
   const callPageUrl = (page) => {
@@ -152,13 +152,13 @@ export default function Programs() {
                     <ul className="space-y-1">
                       {program.features.map((feature, idx) => (
                         <li key={idx} className="text-gray-600 flex items-center gap-2">
-                          <div className="w-2 h-2 bg-[#FBB03B] rounded-full"></div>
+                          <div className={`w-2 h-2 ${program.bgColorButton} rounded-full`}></div>
                           {feature}
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <button onClick={() => callPageUrl(program.link)} className={`${program.bgColorButton} w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-auto`}>
+                  <button onClick={() => callPageUrl(program.link)} className={`${program.bgColorButton} w-full text-white font-bold py-2 px-4 rounded mt-auto`}>
                     Saiba mais
                   </button>
                 </CardContent>

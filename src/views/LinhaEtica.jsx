@@ -6,8 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "c
 import { Card, CardContent, CardHeader, CardTitle } from "components/ui/card";
 import { ArrowLeft, Send, CheckCircle, Shield, AlertTriangle, FileUp, Info } from "lucide-react";
 import { Link } from "react-router-dom";
-import { EthicsComplaint } from "entities/EthicsComplaint";
-import { UploadFile } from "integrations/Core";
+import logo from '../assets/images/logo.webp';
 import emailjs from '@emailjs/browser';
 
 export default function LinhaEticaPage() {
@@ -68,7 +67,6 @@ export default function LinhaEticaPage() {
       const reader = new FileReader();
       reader.onloadend = () => {
         const base64 = reader.result;
-        console.log("🚀 ~ handleFileChange ~ base64:", base64);
         // Você pode salvar o base64 em outro state se necessário
         setBase64(base64);
       };
@@ -105,8 +103,11 @@ export default function LinhaEticaPage() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
-                <Shield className="w-6 h-6 text-[#FBB03B]" />
+              <div className="w-16 h-16 rounded-xl flex items-center justify-center">
+              <img 
+                  src={logo}
+                  alt="logo"
+                  />
               </div>
               <div>
                 <h1 className="text-2xl font-bold">Linha de Ética</h1>
@@ -128,12 +129,12 @@ export default function LinhaEticaPage() {
         <div className="max-w-3xl mx-auto">
           <Card className="mb-8 border-yellow-200 bg-yellow-50/50 shadow-md">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-yellow-800">
+              <CardTitle className="flex items-center gap-3 font-bold text-yellow-800">
                 <Info className="w-6 h-6" />
                 Seja bem-vindo à Linha de Ética
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-yellow-700 space-y-4">
+            <CardContent className="text-yellow-800 space-y-4">
               <p>Este canal seguro e confidencial destina-se a apurar condutas que possam ferir nossas diretrizes institucionais. Todas as informações serão investigadas com o mais absoluto sigilo.</p>
               <p className="font-semibold">A denúncia pode ser anônima. A identificação é opcional.</p>
             </CardContent>

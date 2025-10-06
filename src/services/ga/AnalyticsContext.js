@@ -11,10 +11,6 @@ export const trackPageView = (path) => {
             send_page_view: !isDevelopment,
             debug_mode: isDevelopment
         });
-        
-        if (isDevelopment) {
-            console.log('🔍 Google Analytics (DEV):', { event: 'page_view', page_path: path });
-        }
     }
 };
 
