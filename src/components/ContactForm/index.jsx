@@ -61,8 +61,18 @@ export default function ContactSection() {
 
     try {
       trackEvent("generate_lead", "/contact_form", 'click_send_contact_form', "Formulário de contato");
-
-      ReactGA.event({category: '/contact_form2', action: 'generate_lead',label: "click_send_contact_form2",});
+      emailjs
+      .sendForm('service_7ointbt', 'template_418fct9', form.current, {
+        publicKey: 'tr_-jraGt4mDWXjtn',
+      })
+      .then(
+        () => {
+          toast.success('Formulário enviado!', {
+            position: 'top-right',
+          });
+        },
+        (error) => {},
+      );
       
       setTimeout(() => setIsSuccess(false), 5000);
     } catch (error) {
