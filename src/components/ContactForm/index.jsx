@@ -60,13 +60,13 @@ export default function ContactSection() {
 
 
     try {
-      trackEvent("generate_lead", "/contact_form", 'click_send_contact_form', "Formulário de contato");
       emailjs
       .sendForm('service_7ointbt', 'template_418fct9', form.current, {
         publicKey: 'tr_-jraGt4mDWXjtn',
       })
       .then(
         () => {
+          trackEvent("generate_lead", "/contact_form", 'click_send_contact_form', "Formulário de contato");
           toast.success('Formulário enviado!', {
             position: 'top-right',
           });

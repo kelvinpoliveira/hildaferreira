@@ -1,5 +1,6 @@
+/* eslint-disable no-undef */
 // @ts-nocheck
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button } from "components/ui/button";
 import Input from "components/Input/index";
 import Textarea from "components/Textarea/index";
@@ -8,7 +9,9 @@ import { Send, CheckCircle, ChevronLeft } from "lucide-react";
 import logo from '../assets/images/logo.webp'
 import Footer from 'components/Footer/index';
 import emailjs from '@emailjs/browser';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import { trackEvent, trackPageView } from '../services/ga/AnalyticsContext';
 
 export default function SupportPage() {
   const [formData, setFormData] = useState({
@@ -77,6 +80,12 @@ export default function SupportPage() {
     setFormData(prev => ({ ...prev, userType: type }));
   };
 
+  const location = useLocation();
+
+  useEffect(() => {
+    trackPageView(location.pathname);
+  }, [location]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -95,10 +104,15 @@ export default function SupportPage() {
       })
       .then(
         () => {
-          console.log('SUCCESS!');
+          trackEvent("person_in_ouvidoria_page", "/support_page_form", 'click_send_support_page_form', "Formulário de Ouvidoria");
+          toast.success('Formulário enviado!', {
+            position: 'top-right',
+          });
         },
         (error) => {
-          console.log('FAILED...', error);
+          toast.error('Algo de errado aconteceu. Por favor, tente novamente.', {
+            position: 'top-right',
+          });
         },
       );
       
@@ -284,6 +298,7 @@ export default function SupportPage() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
     <Footer />
     </>

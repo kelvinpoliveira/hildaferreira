@@ -38,11 +38,17 @@ export function Navbar() {
     setIsMobileMenuOpen(false);
   };
 
+  const navigateToOuvidoria = (route: string) => {
+    window.scrollTo(0, 0)
+    navigate("/Ouvidoria")
+  }
+
   const createPageUrl = () => {
     navigate("/")
   }
 
   const callPageUrl = (page) => {
+    window.scrollTo(0, 0);
     navigate(`/${page}`)
   }
 
@@ -206,7 +212,7 @@ export function Navbar() {
                 <button
                 key={item.name}
                 onClick={() => {
-                  item.name === "Ouvidoria" ? navigate("/Ouvidoria") : scrollToSection(item.href)
+                  item.name === "Ouvidoria" ? navigateToOuvidoria("/Ouvidoria") : scrollToSection(item.href)
                 }}
                 className={`font-medium transition-colors hover:text-[#FBB03B] ${
                   isScrolled ? "text-gray-700" : "text-white"
