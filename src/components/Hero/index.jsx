@@ -173,7 +173,7 @@ export default function Hero() {
               <div className="text-gray-600 font-medium">Anos de Tradição</div>
             </div>
             
-            <div className="absolute -top-6 -right-6 bg-[#F4EC09] rounded-2xl p-4 shadow-xl">
+            <div className="absolute -top-6 -right-6 bg-[#FBB03B] rounded-2xl p-4 shadow-xl">
               <Award className="w-8 h-8 text-gray-900" />
             </div>
           </div>

@@ -71,7 +71,7 @@ export default function Testimonials() {
         <div className="text-center mb-16 scroll-fade">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
             O que dizem nossas{" "}
-            <span className="bg-[#F4EC09] bg-clip-text text-transparent">
+            <span className="bg-[#FBB03B] bg-clip-text text-transparent">
               Famílias
             </span>
           </h2>

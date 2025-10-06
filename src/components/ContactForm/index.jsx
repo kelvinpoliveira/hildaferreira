@@ -60,21 +60,9 @@ export default function ContactSection() {
 
 
     try {
-      trackEvent("working_lead", "/contact_form", 'click_send_contact_form', "Formulário de contato");
+      trackEvent("generate_lead", "/contact_form", 'click_send_contact_form', "Formulário de contato");
 
-      ReactGA.event({category: 'Social Links', action: 'ClickTeste',label: "Formulário de contato",});
-      // emailjs
-      // .sendForm('service_7ointbt', 'template_418fct9', form.current, {
-      //   publicKey: 'tr_-jraGt4mDWXjtn',
-      // })
-      // .then(
-      //   () => {
-      //     toast.success('Formulário enviado!', {
-      //       position: 'top-right',
-      //     });
-      //   },
-      //   (error) => {},
-      // );
+      ReactGA.event({category: '/contact_form2', action: 'generate_lead',label: "click_send_contact_form2",});
       
       setTimeout(() => setIsSuccess(false), 5000);
     } catch (error) {

@@ -83,11 +83,11 @@ export default function Programs() {
   ];
 
   const servicosApoio = [
-    { icon: ClipboardList, name: "Coordenação Pedagógica", color: "bg-[#F4EC09]" },
-    { icon: HandHelping, name: "Psicologia Escolar", color: "bg-[#F4EC09]" }, // Changed HeartHand to HandHelping
-    { icon: Smartphone, name: "Agenda Digital", color: "bg-[#F4EC09]" },
-    { icon: MessageCircle, name: "Canal de Ouvidoria", color: "bg-[#F4EC09]" },
-    { icon: Stethoscope, name: "Enfermaria", color: "bg-[#F4EC09]" }
+    { icon: ClipboardList, name: "Coordenação Pedagógica", color: "bg-[#FBB03B]" },
+    { icon: HandHelping, name: "Psicologia Escolar", color: "bg-[#FBB03B]" }, // Changed HeartHand to HandHelping
+    { icon: Smartphone, name: "Agenda Digital", color: "bg-[#FBB03B]" },
+    { icon: MessageCircle, name: "Canal de Ouvidoria", color: "bg-[#FBB03B]" },
+    { icon: Stethoscope, name: "Enfermaria", color: "bg-[#FBB03B]" }
   ];
 
   const nossaEstrutura = [
