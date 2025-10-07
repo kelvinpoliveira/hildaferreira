@@ -1,12 +1,25 @@
-import React from "react";
-import { Link, useNavigate } from 'react-router-dom';
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
-import Footer from "../components/Footer/index";
-import { 
-  ArrowLeft, Milestone, Clock, Target, Users2, Lightbulb, Route, Sparkles,
-  ClipboardCheck, Trophy, CalendarDays, Bot, Map, Scroll, Feather, PenTool, Star
+import {
+  ArrowLeft,
+  Bot,
+  CalendarDays,
+  Clock,
+  Feather,
+  Lightbulb,
+  Map,
+  Milestone,
+  PenTool,
+  Route,
+  Scroll,
+  Sparkles,
+  Target,
+  Trophy,
+  Users2
 } from "lucide-react";
-import ensinoMedioBackground from '../assets/images/backgroundPages/ensinoMedioBackground.jpg'
+import { useEffect } from "react";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { trackPageView } from "services/ga/AnalyticsContext";
+import ensinoMedioBackground from '../assets/images/backgroundPages/ensinoMedioBackground.jpg';
+import Footer from "../components/Footer/index";
 
 const FeatureCard = ({ icon: Icon, title, description, color, children }) => (
   <div className="flex items-start gap-4">
@@ -23,6 +36,13 @@ const FeatureCard = ({ icon: Icon, title, description, color, children }) => (
 
 export default function EnsinoMedioPage() {
   const navigate = useNavigate();
+
+  const location = useLocation();
+  
+  useEffect(() => {
+    trackPageView(location.pathname);
+  }, [location]);
+
   const cargasHorarias = [
     { icon: Clock, title: "1ª e 2ª séries", description: "30h semanais com todos os conteúdos essenciais do Ensino Médio para uma base sólida.", color: "bg-[#145CAB]" },
     { icon: Target, title: "3ª série (Terceirão)", description: "30h semanais com foco total em vestibulares e ENEM, maximizando a preparação.", color: "bg-[#1e6bc4]" }

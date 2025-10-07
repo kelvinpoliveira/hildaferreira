@@ -1,6 +1,6 @@
 
-import React from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import Footer from "../components/Footer/index";
 import { 
@@ -9,6 +9,7 @@ import {
   Bike, Dribbble, Paintbrush, CalendarDays, CheckSquare, Activity, CookingPot, BrainCircuit
 } from "lucide-react";
 import anosIniciaisBackground from '../assets/images/backgroundPages/anosIniciaisBackground.jpg'
+import { trackPageView } from "services/ga/AnalyticsContext";
 
 const FeatureCard = ({ icon: Icon, title, description, color }) => (
   <div className="flex items-start gap-4">
@@ -35,15 +36,12 @@ const IconCard = ({ icon: Icon, title, color }) => (
 
 export default function EnsinoFundamentalAnosIniciaisPage() {
     const navigate = useNavigate();
-//   const diferenciais = [
-//     { icon: Users, title: "Turmas reduzidas com professora titular e auxiliar", description: "", color: "bg-[#145CAB]" },
-//     { icon: Laptop, title: "Livros Digitais, aplicativos gamificados com exercícios de matemática (Catlearning), português e ciências (Ciclo Avaliativo)", description: "", color: "bg-[#1e6bc4]" },
-//     { icon: FileText, title: "Simulados Semestrais EDROS.", description: "", color: "bg-[#145CAB]" },
-//     { icon: Bot, title: "Robótica", description: "", color: "bg-[#1e6bc4]" },
-//     { icon: Heart, title: "Educação Cristã", description: "", color: "bg-[#145CAB]" },
-//     { icon: PersonStanding, title: "Judô, Balé e Dança Contemporânea.", description: "", color: "bg-[#1e6bc4]" },
-//     { icon: Users2, title: "Serviço de apoio ao aluno em contraturno de português e matemática.", description: "", color: "bg-[#145CAB]" },
-//   ];
+
+    const location = useLocation();
+  
+    useEffect(() => {
+      trackPageView(location.pathname);
+    }, [location]);
 
 const diferenciais = [
     { icon: Users, title: "Turmas Reduzidas", description: "Professora titular e auxiliar para atendimento próximo.", color: "bg-[#145CAB]" },

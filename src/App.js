@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { StoreProvider } from './stores/RootStore';
 import { AnalyticsContext, trackPageView } from './services/ga/AnalyticsContext';
 import Home from './views/Home';
@@ -12,11 +11,6 @@ import EnsinoMedioPage from 'views/EnsinoMedio';
 import LinhaEticaPage from 'views/LinhaEtica';
 
 function AppRoutes() {
-  const location = useLocation();
-
-  useEffect(() => {
-    trackPageView(location.pathname);
-  }, [location]);
 
   return (
     <Routes>

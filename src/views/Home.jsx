@@ -1,27 +1,20 @@
 // @ts-nocheck
-import React, { useState, useEffect } from 'react';
-import {Navbar} from '../components/Navbar/index';
-import Hero from 'components/Hero/index';
 import About from 'components/About/index';
-import Programs from 'components/Programs/index';
 import ContactForm from 'components/ContactForm/index';
 import Footer from 'components/Footer/index';
-import Testimonials from 'components/Testemonials/index'
-import { useContext } from 'react';
-import {AnalyticsContext} from 'services/ga/AnalyticsContext'
+import Hero from 'components/Hero/index';
+import Programs from 'components/Programs/index';
+import Testimonials from 'components/Testemonials/index';
+import { useEffect } from 'react';
 import ReactGA from 'react-ga4';
+import { Navbar } from '../components/Navbar/index';
 
 const Home = () => {
   const TRACKING_ID = "G-BR85R90X35";
 
-  // const ini = useContext(AnalyticsContext);
-
   useEffect(() => {
-    console.log("iniciou 1")
     ReactGA.initialize(TRACKING_ID);
-    // Send pageview with a custom path
-    ReactGA.send({ hitType: "pageview", page: "/Home", title: "Homeeee" });
-    console.log("iniciou 3")
+    ReactGA.send({ hitType: "pageview", page: "/Home", title: "Home" });
   }, []);
 
 

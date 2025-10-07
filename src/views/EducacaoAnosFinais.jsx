@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import Footer from "../components/Footer/index";
 import { 
@@ -8,6 +8,7 @@ import {
   Volleyball, CheckSquare, Activity, CookingPot
 } from "lucide-react";
 import anosFinaisBackground from '../assets/images/backgroundPages/anosFinaisBackground.jpg'
+import { trackPageView } from "services/ga/AnalyticsContext";
 
 const FeatureCard = ({ icon: Icon, title, description, color }) => (
   <div className="flex items-start gap-4">
@@ -34,6 +35,13 @@ const IconCard = ({ icon: Icon, title, color }) => (
 
 export default function EnsinoFundamentalAnosFinaisPage() {
   const navigate = useNavigate();
+
+  const location = useLocation();
+  
+  useEffect(() => {
+    trackPageView(location.pathname);
+  }, [location]);
+
   const culturaEstudo = [
     { icon: Laptop, title: "Tecnologia e Gamificação", description:"Livros Digitais, aplicativos gamificados com exercícios de matemática (Catlearning), português e ciências (Ciclo Avaliativo)", color: "bg-[#1e6bc4]" },
     { icon: FileText, title: "Simulados EDROS", description: "Avaliações semestrais para acompanhamento do desempenho.", color: "bg-[#145CAB]" },

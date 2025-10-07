@@ -25,8 +25,14 @@ export default function SupportPage() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
-
+  
   const form = useRef();
+
+  const location = useLocation();
+  
+  useEffect(() => {
+    trackPageView(location.pathname);
+  }, [location]);
 
   const handleInputChange = (field, value) => {
     // Apply phone mask
@@ -80,12 +86,6 @@ export default function SupportPage() {
     setFormData(prev => ({ ...prev, userType: type }));
   };
 
-  const location = useLocation();
-
-  useEffect(() => {
-    trackPageView(location.pathname);
-  }, [location]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -99,12 +99,12 @@ export default function SupportPage() {
 
     try {
       emailjs
-      .sendForm('service_7ointbt', 'template_gtdxmwr', form.current, {
+      .sendForm('service_7ointbt', 'template_418fct9', form.current, {
         publicKey: 'tr_-jraGt4mDWXjtn',
       })
       .then(
         () => {
-          trackEvent("person_in_ouvidoria_page", "/support_page_form", 'click_send_support_page_form', "Formulário de Ouvidoria");
+          trackEvent("generate_lead", "/contact_form", 'click_send_contact_form', "Formulário de contato");
           toast.success('Formulário enviado!', {
             position: 'top-right',
           });
@@ -270,8 +270,8 @@ export default function SupportPage() {
                         <Textarea
                         required
                         name="form_message"
-                        value={formData.message}
-                        onChange={(e) => handleInputChange("message", e.target.value)}
+                        value={formData.form_message}
+                        onChange={(e) => handleInputChange("form_message", e.target.value)}
                         placeholder="Como podemos ajudá-lo?"
                         rows={5}
                         className="border-gray-200 focus:border-[#145CAB] resize-none"

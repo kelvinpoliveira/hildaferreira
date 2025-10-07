@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { CheckCircle, Clock, Mail, MapPin, Phone, Send, MessageCircleMore } from "lucide-react";
+import { CheckCircle, Clock, Mail, MapPin, MessageCircleMore, Phone, Send } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
@@ -7,10 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/ca
 import emailjs from '@emailjs/browser';
 import Input from "components/Input/index";
 import Textarea from "components/Textarea/index";
-import ReactGA from 'react-ga4';
 import { ToastContainer, toast } from 'react-toastify';
-import { useContext } from 'react';
-import {AnalyticsContext} from 'services/ga/AnalyticsContext'
 import { trackEvent } from '../../services/ga/AnalyticsContext';
 
 export default function ContactSection() {
@@ -27,7 +24,6 @@ export default function ContactSection() {
   const [phoneError, setPhoneError] = useState("");
 
   const form = useRef();
-  const ini = useContext(AnalyticsContext);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,6 +43,7 @@ export default function ContactSection() {
     return () => observer.disconnect();
   }, []);
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -58,25 +55,26 @@ export default function ContactSection() {
     
     setIsSubmitting(true);
 
-
     try {
       emailjs
-      .sendForm('service_7ointbt', 'template_418fct9', form.current, {
-        publicKey: 'tr_-jraGt4mDWXjtn',
-      })
-      .then(
-        () => {
-          trackEvent("generate_lead", "/contact_form", 'click_send_contact_form', "Formulário de contato");
-          toast.success('Formulário enviado!', {
-            position: 'top-right',
-          });
-        },
-        (error) => {
-          toast.error('Algo de errado aconteceu. Por favor, tente novamente.', {
-            position: 'top-right',
-          });
-        },
-      );
+        .sendForm('service_7ointbt', 'template_418fct9', form.current, {
+          publicKey: 'tr_-jraGt4mDWXjtn',
+        })
+        .then(
+          () => {
+            trackEvent("generate_lead", "/contact_form", 'click_send_contact_form', "Formulário de contato");
+            toast.success('Formulário enviado!', {
+              position: 'top-right',
+            });
+            // handleInputChange("message", formData.message.replace("ENTRE EM CONTATO: ", ""))
+          },
+          (error) => {
+            toast.error('Algo de errado aconteceu. Por favor, tente novamente.', {
+              position: 'top-right',
+            });
+            // handleInputChange("message", formData.message.replace("ENTRE EM CONTATO: ", ""))
+          },
+        );
       
       setTimeout(() => setIsSuccess(false), 5000);
     } catch (error) {
@@ -89,7 +87,7 @@ export default function ContactSection() {
   const handleWhatsAppMessage = () => {
     const phoneNumber = '5581999989897'
     const message = 'Olá, gostaria de saber algumas informações da escola !'
-
+    trackEvent("form_submit_whatsapp", "/form_submit_whatsapp", 'click_send_whatsapp_contact', "Contato pelo WhatsApp");
     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   }
 

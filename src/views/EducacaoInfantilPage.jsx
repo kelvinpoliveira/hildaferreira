@@ -1,6 +1,6 @@
 
-import React from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import Footer from "../components/Footer/index";
 import { 
@@ -8,6 +8,7 @@ import {
   Target, Clock, Users2, Star, Award, Calendar, Bike 
 } from "lucide-react";
 import educacaoInfantilBg from "../assets/images/backgroundPages/educacaoInfantilBackground.jpg";
+import { trackPageView } from "services/ga/AnalyticsContext";
 
 const FeatureCard = ({ icon: Icon, title, description, color }) => {
     return (
@@ -24,6 +25,13 @@ const FeatureCard = ({ icon: Icon, title, description, color }) => {
 
 export default function EducacaoInfantilPage() {
     const navigate = useNavigate();
+
+    const location = useLocation();
+  
+    useEffect(() => {
+      trackPageView(location.pathname);
+    }, [location]);
+
   const turmas = [
     {
       title: "Infantil II e III (2-3 anos)",
@@ -59,7 +67,7 @@ export default function EducacaoInfantilPage() {
     <div className="bg-[#FAFAF9]">
       {/* Header Section */}
       <header 
-        className="text-white relative overflow-hidden py-20 bg-auto bg-center bg-no-repeat"
+        className="text-white relative overflow-hidden py-20 bg-cover bg-center bg-no-repeat"
         style={{ 
           backgroundImage: `linear-gradient(rgba(20, 90, 171, 0.7), rgba(20, 90, 171, 0.7)), url(${educacaoInfantilBg})`,
           minHeight: '400px'

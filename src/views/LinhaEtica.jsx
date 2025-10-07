@@ -1,13 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Button } from "../components/ui/button";
+import emailjs from '@emailjs/browser';
 import Input from "components/Input/index";
 import Textarea from "components/Textarea/index";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "components/ui/card";
-import { ArrowLeft, Send, CheckCircle, Shield, AlertTriangle, FileUp, Info } from "lucide-react";
+import { AlertTriangle, ArrowLeft, CheckCircle, Info, Send } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from '../assets/images/logo.webp';
-import emailjs from '@emailjs/browser';
+import { Button } from "../components/ui/button";
 
 export default function LinhaEticaPage() {
   const [formData, setFormData] = useState({
@@ -95,7 +94,7 @@ export default function LinhaEticaPage() {
     setIsSubmitting(false);
   };
 
-  const canSubmit = agreedToTerms && formData.details && formData.frequency;
+  const canSubmit = agreedToTerms && formData.form_frequency;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -178,19 +177,22 @@ export default function LinhaEticaPage() {
                       rows={8}
                       className="border-gray-200 focus:border-[#145CAB] resize-y"
                     />
-                    <Select required value={formData.form_frequency} onValueChange={(value) => handleInputChange("form_frequency", value)}>
-                      <SelectTrigger className="border-gray-200 focus:border-[#145CAB]">
-                        <SelectValue placeholder="Com que frequência o evento ocorre?" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="once">Ocorreu Apenas Uma Vez</SelectItem>
-                        <SelectItem value="infrequently">Com Pouca Frequência, Mas Continua Ocorrendo</SelectItem>
-                        <SelectItem value="recurrently">Ocorre de Forma Recorrente</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <select 
+                      required 
+                      id="form_frequency" 
+                      name="form_frequency" 
+                      value={formData.form_frequency} 
+                      onChange={(e) => handleInputChange("form_frequency", e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-200 rounded-md focus:border-[#145CAB] focus:outline-none focus:ring-2 focus:ring-[#145CAB]/20 bg-white"
+                    >
+                      <option value="" disabled>Com que frequência o evento ocorre?</option>
+                      <option value="Ocorreu Apenas Uma Vez">Ocorreu Apenas Uma Vez</option>
+                      <option value="Com Pouca Frequência, Mas Continua Ocorrendo">Com Pouca Frequência, Mas Continua Ocorrendo</option>
+                      <option value="Ocorre de Forma Recorrente">Ocorre de Forma Recorrente</option>
+                    </select>
                   </div>
 
-                  <div className="space-y-4">
+                  {/* <div className="space-y-4">
                     <h3 className="font-semibold text-lg text-gray-800">Deseja enviar algum arquivo? (Opcional)</h3>
                     <div className="flex items-center gap-4 p-4 border border-dashed rounded-lg">
                       <FileUp className="w-6 h-6 text-gray-500" />
@@ -202,7 +204,7 @@ export default function LinhaEticaPage() {
                       />
                     </div>
                     {file && <p className="text-sm text-gray-600">Arquivo selecionado: {file.name}</p>}
-                  </div>
+                  </div> */}
 
                   <div className="p-4 bg-gray-100 rounded-lg space-y-4">
                     <h4 className="font-semibold text-gray-800 flex items-center gap-2"><AlertTriangle className="text-gray-500 w-5 h-5"/>Como seus dados serão tratados?</h4>

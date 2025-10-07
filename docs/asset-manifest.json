@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.b18c3c75.css",
-    "main.js": "./static/js/main.5f962794.js",
+    "main.css": "./static/css/main.b846cb77.css",
+    "main.js": "./static/js/main.29c07ce5.js",
     "static/js/453.864c2f47.chunk.js": "./static/js/453.864c2f47.chunk.js",
     "static/media/escola.JPG": "./static/media/escola.2c39a7bad8af963f1ab0.JPG",
     "static/media/anosFinais.png": "./static/media/anosFinais.4d95c6c06f9e381668bc.png",
@@ -19,17 +19,17 @@
     "static/media/image1.jpg": "./static/media/image1.af8813e8bd42200a355b.jpg",
     "static/media/depoimento2.png": "./static/media/depoimento2.871eecf87ab88622c591.png",
     "static/media/ensinoMedioBackground.jpg": "./static/media/ensinoMedioBackground.32385a264c9b56b07411.jpg",
-    "static/media/anosIniciaisBackground.jpg": "./static/media/anosIniciaisBackground.06e170c56f91a4b9c55d.jpg",
+    "static/media/anosIniciaisBackground.jpg": "./static/media/anosIniciaisBackground.40b3727e2a648ecfeb26.jpg",
     "static/media/anosFinaisBackground.jpg": "./static/media/anosFinaisBackground.fcb2384a67a0f141bcc0.jpg",
     "static/media/educacaoInfantilBackground.jpg": "./static/media/educacaoInfantilBackground.691519acf8bafdd80294.jpg",
     "static/media/logo.webp": "./static/media/logo.4b291cea33472ed4f064.webp",
     "index.html": "./index.html",
-    "main.b18c3c75.css.map": "./static/css/main.b18c3c75.css.map",
-    "main.5f962794.js.map": "./static/js/main.5f962794.js.map",
+    "main.b846cb77.css.map": "./static/css/main.b846cb77.css.map",
+    "main.29c07ce5.js.map": "./static/js/main.29c07ce5.js.map",
     "453.864c2f47.chunk.js.map": "./static/js/453.864c2f47.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b18c3c75.css",
-    "static/js/main.5f962794.js"
+    "static/css/main.b846cb77.css",
+    "static/js/main.29c07ce5.js"
   ]
 }
